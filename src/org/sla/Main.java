@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-//cantcommitforsomereason
+//cantcommitforsomereaso
     public static void main(String[] args) {
         launch(args);
     }
