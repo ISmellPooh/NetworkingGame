@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
@@ -17,6 +18,6 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Canvas fx:id="canvas" height="690.0" width="600.0" />
+      <Canvas fx:id="canvas" height="690.0" onKeyPressed="#handle" width="600.0" />
    </children>
 </GridPane>

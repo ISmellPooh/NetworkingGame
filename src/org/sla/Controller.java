@@ -19,6 +19,8 @@ public class Controller {
     int xr2;
     int yr2;
 
+    private GraphicsContext graphicsContext;
+
     private Queue myQueue;
     private Stage stage;
 
@@ -29,19 +31,18 @@ public class Controller {
         ybi = 0;
         xr1 = 10;
         yr1 = 10;
-        xr2 = 20;
-        yr2 = 20;
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        String imagePath1 = "";
-        Image backgroundImage = new Image(imagePath1);
-        String imagePath2 = "";
-        Image rover1 = new Image(imagePath2);
-        String imagePath3 = "";
-        Image rover2 = new Image(imagePath3);
+        xr2 = 100;
+        yr2 = 100;
+        graphicsContext = canvas.getGraphicsContext2D();
+        String imagePath1 = "org/sla/backgroundImage.png";
+        backgroundImage = new Image(imagePath1);
+        String imagePath2 = "org/sla/rover1.png";
+        rover1 = new Image(imagePath2);
+        String imagePath3 = "org/sla/rover2.png";
+        rover2 = new Image(imagePath3);
 
-        graphicsContext.drawImage(backgroundImage, xbi, ybi, 10, 10);
-        graphicsContext.drawImage(rover1, xr1, yr1, 10, 10);
-        graphicsContext.drawImage(rover2, xr2, yr2, 10, 10);
+        draw();
+        canvas.setFocusTraversable(true);
 
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -58,8 +59,17 @@ public class Controller {
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr1 = xr1 + 1;
                 }
+                draw();
             }
         });
+    }
+
+    void draw() {
+        graphicsContext.clearRect(0,0,canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
+        graphicsContext.drawImage(rover2, xr2, yr2, 50, 50);
+
     }
 
     public void setStage(Stage theStage) {
