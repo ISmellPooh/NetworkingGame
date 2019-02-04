@@ -23,7 +23,6 @@ public class Controller {
     private Stage stage;
 
     public Canvas canvas;
-    public GraphicsContext graphicsContext;
 
     public void initialize() {
         xbi = 0;
@@ -33,25 +32,37 @@ public class Controller {
         xr2 = 20;
         yr2 = 20;
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.drawImage(backgroundImage, xbi, ybi);
-        graphicsContext.drawImage(rover1, xr1, yr1);
-        graphicsContext.drawImage(rover2, xr2, yr2);
+        String imagePath1 = "";
+        Image backgroundImage = new Image(imagePath1);
+        String imagePath2 = "";
+        Image rover1 = new Image(imagePath2);
+        String imagePath3 = "";
+        Image rover2 = new Image(imagePath3);
+
+        graphicsContext.drawImage(backgroundImage, xbi, ybi, 10, 10);
+        graphicsContext.drawImage(rover1, xr1, yr1, 10, 10);
+        graphicsContext.drawImage(rover2, xr2, yr2, 10, 10);
 
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode()) {
-
+                if (event.getCode() == KeyCode.UP) {
+                    yr1 = yr1 - 1;
+                }
+                if (event.getCode() == KeyCode.DOWN) {
+                    yr1 = yr1 + 1;
+                }
+                if (event.getCode() == KeyCode.LEFT) {
+                    xr1 = xr1 - 1;
+                }
+                if (event.getCode() == KeyCode.RIGHT) {
+                    xr1 = xr1 + 1;
                 }
             }
-        }
-
+        });
     }
 
     public void setStage(Stage theStage) {
         stage = theStage;
-    }
-
-    public void moveRover1() {
     }
 }
