@@ -18,6 +18,11 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Canvas fx:id="canvas" height="690.0" width="600.0" />
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Canvas fx:id="canvas" height="690.0" width="600.0" />
+            <Canvas fx:id="canvas2" height="690.0" width="600.0" />
+         </children>
+      </VBox>
    </children>
 </GridPane>
