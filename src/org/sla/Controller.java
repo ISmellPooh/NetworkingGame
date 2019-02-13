@@ -5,7 +5,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.canvas.Canvas;
 
@@ -30,6 +29,8 @@ public class Controller {
 
     public Canvas canvas;
     public Canvas canvas2;
+
+    String toSend;
 
     public void initialize() {
         myQueue = new Queue();
@@ -57,55 +58,29 @@ public class Controller {
 
         draw();
         canvas.setFocusTraversable(true);
-        canvas2.setFocusTraversable(true);
+        canvas2.setFocusTraversable(false);
 
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.UP) {
                     yr1 = yr1 - 1;
+                    toSend = "up";
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     yr1 = yr1 + 1;
+                    toSend = "down";
                 }
                 if (event.getCode() == KeyCode.LEFT) {
                     xr1 = xr1 - 1;
+                    toSend = "left";
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr1 = xr1 + 1;
+                    toSend = "right";
                 }
                 draw();
-            }
-        });
-
-        canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getSceneX() == xr2 && event.getSceneY() == yr2) {
-                    r2Health = r2Health - 1;
-                    if (r2Health == 0) {
-                        graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
-                    }
-                }
-            }
-        });
-
-        canvas2.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.UP) {
-                    yr1 = yr1 - 1;
-                }
-                if (event.getCode() == KeyCode.DOWN) {
-                    yr1 = yr1 + 1;
-                }
-                if (event.getCode() == KeyCode.LEFT) {
-                    xr1 = xr1 - 1;
-                }
-                if (event.getCode() == KeyCode.RIGHT) {
-                    xr1 = xr1 + 1;
-                }
-                draw();
+                myQueue.put(toSend);
             }
         });
     }
