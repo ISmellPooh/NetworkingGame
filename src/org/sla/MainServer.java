@@ -6,21 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class MainServer extends Application {
     private Controller myController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample1.fxml"));
         Parent root = loader.load();
-        myController = loader.getController();
         myController.setStage(primaryStage);
 
-        Thread.currentThread().setName("Main GUI Thread");
+        Thread.currentThread().setName("MainServer GUI Thread");
 
         primaryStage.setTitle("GUI");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        myController = loader.getController();
+        myController.setServerMode();
     }
 
 
