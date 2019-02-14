@@ -110,7 +110,13 @@ public class Controller {
                     toSend = "right";
                 }
                 draw();
-                outQueue.put(toSend);
+                while (!Thread.interrupted()) {
+                    outQueue.put(toSend);
+                    while (toSend == null) {
+                        Thread.currentThread().yield();
+                        outQueue.put(toSend);
+                    }
+                }
             }
         });
     }
@@ -141,7 +147,13 @@ public class Controller {
                     toSend = "right";
                 }
                 draw();
-                outQueue.put(toSend);
+                while (!Thread.interrupted()) {
+                    outQueue.put(toSend);
+                    while (toSend == null) {
+                        Thread.currentThread().yield();
+                        outQueue.put(toSend);
+                    }
+                }
             }
         });
     }
