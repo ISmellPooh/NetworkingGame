@@ -32,7 +32,7 @@
                </children>
             </HBox>
             <TextField fx:id="statusText" editable="false" />
-            <Button fx:id="startButton" mnemonicParsing="false" text="Start" />
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#startButtonPressed" text="Start" />
             <Canvas fx:id="canvas" height="690.0" width="600.0" />
          </children>
       </VBox>
