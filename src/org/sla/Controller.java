@@ -143,7 +143,7 @@ public class Controller {
         if (serverMode) {
 
             // We're a server: create a thread for listening for connecting clients
-            ConnectToNewClients connectToNewClients = new ConnectToNewClients(Integer.parseInt(portText.getText()), inQueue, outQueue, statusText, yourNameText);
+            ConnectToNewClients connectToNewClients = new ConnectToNewClients(Integer.parseInt(portText.getText()), inQueue, outQueue, statusText);
             Thread connectThread = new Thread(connectToNewClients);
             connectThread.start();
 
@@ -166,7 +166,7 @@ public class Controller {
                 communicationOutThread.start();
 
                 //   Thread 2: handles communication FROM server TO client
-                CommunicationIn communicationIn = new CommunicationIn(socketClientSide, new ObjectInputStream(socketClientSide.getInputStream()), inQueue, null, statusText, yourNameText);
+                CommunicationIn communicationIn = new CommunicationIn(socketClientSide, new ObjectInputStream(socketClientSide.getInputStream()), inQueue, null, statusText);
                 Thread communicationInThread = new Thread(communicationIn);
                 communicationInThread.start();
 
