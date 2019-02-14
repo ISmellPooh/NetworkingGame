@@ -77,6 +77,18 @@ public class Controller {
         draw();
         canvas.setFocusTraversable(true);
         //canvas2.setFocusTraversable(false);
+    }
+
+    void setServerMode() {
+        serverMode = true;
+        startButton.setText("Start");
+        try {
+            // display the computer's IP address
+            IPAddressText.setText(InetAddress.getLocalHost().getHostAddress());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            statusText.setText("Server start: getLocalHost failed. Exiting....");
+        }
 
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -103,23 +115,35 @@ public class Controller {
         });
     }
 
-    void setServerMode() {
-        serverMode = true;
-        startButton.setText("Start");
-        try {
-            // display the computer's IP address
-            IPAddressText.setText(InetAddress.getLocalHost().getHostAddress());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            statusText.setText("Server start: getLocalHost failed. Exiting....");
-        }
-    }
-
     void setClientMode() {
         serverMode = false;
         startButton.setText("Connect");
         // display the IP address for the local computer
         IPAddressText.setText("127.0.0.1");
+
+        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.UP) {
+                    yr2 = yr2 - 1;
+                    toSend = "up";
+                }
+                if (event.getCode() == KeyCode.DOWN) {
+                    yr2 = yr2 + 1;
+                    toSend = "down";
+                }
+                if (event.getCode() == KeyCode.LEFT) {
+                    xr2 = xr2 - 1;
+                    toSend = "left";
+                }
+                if (event.getCode() == KeyCode.RIGHT) {
+                    xr2 = xr2 + 1;
+                    toSend = "right";
+                }
+                draw();
+                outQueue.put(toSend);
+            }
+        });
     }
 
     public void startButtonPressed() {
