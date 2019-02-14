@@ -8,8 +8,7 @@ public class Message implements Serializable {
     private String data;
     // both fields are simple Strings, so default code is used to read/write these Strings
 
-    Message(String who, String what) {
-        sender = who;
+    Message(String what) {
         data = what;
     }
 

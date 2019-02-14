@@ -218,5 +218,14 @@ public class Controller {
     public void setStage(Stage theStage) {
         stage = theStage;
     }
+    public void sendButtonPressed() {
+        // send puts message (sender+text) into the outQueue
+        Message message = new Message(toSend);
+
+        boolean putSucceeded = outQueue.put(message);
+        while (!putSucceeded) {
+            Thread.currentThread().yield();
+            putSucceeded = outQueue.put(message);
+        }
+    }
 }
-//
