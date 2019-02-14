@@ -13,7 +13,7 @@ public class MainServer extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample1.fxml"));
         Parent root = loader.load();
-        myController.setStage(primaryStage);
+        //myController.setStage(primaryStage);
 
         Thread.currentThread().setName("MainServer GUI Thread");
 
