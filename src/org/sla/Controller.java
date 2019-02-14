@@ -119,7 +119,7 @@ public class Controller {
         serverMode = false;
         startButton.setText("Connect");
         // display the IP address for the local computer
-        IPAddressText.setText("127.0.0.1");
+        IPAddressText.setText("");
 
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -218,9 +218,10 @@ public class Controller {
     public void setStage(Stage theStage) {
         stage = theStage;
     }
+
     public void sendButtonPressed() {
         // send puts message (sender+text) into the outQueue
-        Message message = new Message(toSend);
+        Message message = new Message(IPAddressText.getText(), toSend);
 
         boolean putSucceeded = outQueue.put(message);
         while (!putSucceeded) {
