@@ -31,7 +31,7 @@
                   <TextField fx:id="portText" promptText="Port" />
                </children>
             </HBox>
-            <TextField fx:id="statusText" />
+            <TextField fx:id="statusText" editable="false" />
             <Button fx:id="startButton" mnemonicParsing="false" text="Start" />
             <Canvas fx:id="canvas" height="690.0" width="600.0" />
          </children>
