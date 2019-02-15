@@ -17,7 +17,7 @@ public class MainServer extends Application {
 
         Thread.currentThread().setName("MainServer GUI Thread");
 
-        primaryStage.setTitle("GUI");
+        primaryStage.setTitle("Server");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

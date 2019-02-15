@@ -14,9 +14,9 @@ public class MainClient extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample1.fxml"));
         Parent root = loader.load();
 
-        Thread.currentThread().setName("MainServer GUI Thread");
+        Thread.currentThread().setName("MainClient GUI Thread");
 
-        primaryStage.setTitle("GUI");
+        primaryStage.setTitle("Client");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

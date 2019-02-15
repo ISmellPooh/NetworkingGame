@@ -43,8 +43,6 @@ public class Controller {
     public Canvas canvas;
     //public Canvas canvas2;
 
-    String toSend;
-
     private boolean serverMode;
     static boolean connected;
 
@@ -52,7 +50,7 @@ public class Controller {
         inQueue = new Queue();
         outQueue = new Queue();
         connected = false;
-        GUIUpdater updater = new GUIUpdater(inQueue);
+        GUIUpdater updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
 
@@ -90,31 +88,41 @@ public class Controller {
             statusText.setText("Server start: getLocalHost failed. Exiting....");
         }
 
-        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                String toSend = "why?";
+                boolean actuallySend = false;
+
                 if (event.getCode() == KeyCode.UP) {
                     yr1 = yr1 - 1;
                     toSend = "up";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     yr1 = yr1 + 1;
                     toSend = "down";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
                     xr1 = xr1 - 1;
                     toSend = "left";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr1 = xr1 + 1;
                     toSend = "right";
+                    actuallySend = true;
                 }
-                draw();
-                while (!Thread.interrupted()) {
-                    outQueue.put(toSend);
-                    while (toSend == null) {
-                        Thread.currentThread().yield();
-                        outQueue.put(toSend);
+                if (actuallySend) {
+                    draw();
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                    while (!Thread.interrupted()) {
+                        outQueue.put(msgToSend);
+                        while (toSend == null) {
+                            Thread.currentThread().yield();
+                            outQueue.put(msgToSend);
+                        }
                     }
                 }
             }
@@ -127,31 +135,41 @@ public class Controller {
         // display the IP address for the local computer
         IPAddressText.setText("");
 
-        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                boolean actuallySend = false;
+                String toSend = "huh?";
                 if (event.getCode() == KeyCode.UP) {
                     yr2 = yr2 - 1;
                     toSend = "up";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     yr2 = yr2 + 1;
                     toSend = "down";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
                     xr2 = xr2 - 1;
                     toSend = "left";
+                    actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr2 = xr2 + 1;
                     toSend = "right";
+                    actuallySend = true;
                 }
-                draw();
-                while (!Thread.interrupted()) {
-                    outQueue.put(toSend);
-                    while (toSend == null) {
-                        Thread.currentThread().yield();
-                        outQueue.put(toSend);
+
+                if (actuallySend) {
+                    draw();
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                    while (!Thread.interrupted()) {
+                        outQueue.put(msgToSend);
+                        while (toSend == null) {
+                            Thread.currentThread().yield();
+                            outQueue.put(msgToSend);
+                        }
                     }
                 }
             }
@@ -216,6 +234,7 @@ public class Controller {
     }
 
     void draw() {
+        System.out.println("I DREW");
         graphicsContext.clearRect(0,0,canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
@@ -227,18 +246,17 @@ public class Controller {
         graphicsContext2.drawImage(rover2, xr2, yr2, 50, 50);*/
     }
 
+    void moveUPandDraw() {
+        if (serverMode) {
+            yr1 = yr1 - 1;
+        } else {
+            yr2 = yr2 - 1;
+        }
+        draw();
+    }
+
     public void setStage(Stage theStage) {
         stage = theStage;
     }
 
-    public void sendButtonPressed() {
-        // send puts message (sender+text) into the outQueue
-        Message message = new Message(IPAddressText.getText(), toSend);
-
-        boolean putSucceeded = outQueue.put(message);
-        while (!putSucceeded) {
-            Thread.currentThread().yield();
-            putSucceeded = outQueue.put(message);
-        }
-    }
 }

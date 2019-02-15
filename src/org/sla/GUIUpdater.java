@@ -2,8 +2,9 @@ package org.sla;
 
 public class GUIUpdater implements Runnable {
     private Queue originalQueue;
+    private Controller myController;
 
-    GUIUpdater(Queue queue) {
+    GUIUpdater(Queue queue, Controller controller) {
         originalQueue = queue;
     }
 
@@ -11,25 +12,26 @@ public class GUIUpdater implements Runnable {
         Thread.currentThread().setName("GUIUpdater Thread");
 
         while (!Thread.interrupted()) {
-            String originalString = (String)originalQueue.get();
-            while (originalString == null) {
+            Message message = (Message)originalQueue.get();
+            while (message == null) {
                 Thread.currentThread().yield();
-                originalString = (String)originalQueue.get();
+                message = (Message)originalQueue.get();
             }
 
-            if (originalString.equals("up")) {
+            if (message.data().equals("up")) {
                 // move rover1 up
                 System.out.println("up");
+                myController.moveUPandDraw();
             }
-            if (originalString.equals("down")) {
+            if (message.data().equals("down")) {
                 // move rover1 down
                 System.out.println("down");
             }
-            if (originalString.equals("left")) {
+            if (message.data().equals("left")) {
                 // move rover1 left
                 System.out.println("left");
             }
-            if (originalString.equals("right")) {
+            if (message.data().equals("right")) {
                 // move rover1 right
                 System.out.println("right");
             }
