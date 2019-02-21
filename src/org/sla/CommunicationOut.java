@@ -48,7 +48,7 @@ public class CommunicationOut implements Runnable {
                 Message finalMessage = message;
                 System.out.println("CommunicationOut GOT: " + message);
 
-                writer.writeObject(message);
+                //writer.writeObject(message);
                 writer.flush();
 
                 Platform.runLater(() -> statusText.setText("SENT: " + finalMessage));
