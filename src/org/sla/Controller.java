@@ -274,14 +274,14 @@ public class Controller {
         graphicsContext2.drawImage(rover2, xr2, yr2, 50, 50);*/
     }
 
-    void moveUPandDraw() {
+    /*void moveUPandDraw() {
         if (serverMode) {
             yr1 = yr1 - 1;
         } else {
             yr2 = yr2 - 1;
         }
         draw();
-    }
+    }*/
 
     public void setStage(Stage theStage) {
         stage = theStage;

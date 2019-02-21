@@ -67,7 +67,7 @@ public class CommunicationIn implements Runnable{
                     Platform.runLater(() -> statusText.setText("MULTICAST into OutputQueue: " + finalMessage));
 
                 }
-                }
+            }
 
             // while loop ended!  close reader and socket
             socket.close();
