@@ -56,6 +56,17 @@ public class CommunicationIn implements Runnable{
                 }
                     System.out.println("CommunicationIn PUT into InputQueue: " + message);
                     Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
+
+                if (serverMode) {
+                    putSucceeded = outQueue.put(message);
+                    while (!putSucceeded) {
+                        Thread.currentThread().yield();
+                        putSucceeded = outQueue.put(message);
+                    }
+                    System.out.println("CommunicationIn MULTICAST into OutputQueue: " + message);
+                    Platform.runLater(() -> statusText.setText("MULTICAST into OutputQueue: " + finalMessage));
+
+                }
                 }
 
             // while loop ended!  close reader and socket
