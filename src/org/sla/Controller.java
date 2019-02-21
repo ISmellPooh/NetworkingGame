@@ -33,6 +33,8 @@ public class Controller {
     int r1Health;
     int r2Health;
 
+    boolean arrowKeyAlreadySent;
+
     private GraphicsContext graphicsContext;
     private GraphicsContext graphicsContext2;
 
@@ -53,6 +55,8 @@ public class Controller {
         GUIUpdater updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
+
+        arrowKeyAlreadySent = false;
 
         xbi = 0;
         ybi = 0;
@@ -88,9 +92,15 @@ public class Controller {
             statusText.setText("Server start: getLocalHost failed. Exiting....");
         }
 
-        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                if (arrowKeyAlreadySent) {
+                    event.consume();
+                    return;
+                }
+
+                arrowKeyAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
 
@@ -127,6 +137,12 @@ public class Controller {
                 }
             }
         });
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                arrowKeyAlreadySent = false;
+            }
+        });
     }
 
     void setClientMode() {
@@ -135,9 +151,15 @@ public class Controller {
         // display the IP address for the local computer
         IPAddressText.setText("");
 
-        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                if (arrowKeyAlreadySent) {
+                    event.consume();
+                    return;
+                }
+
+                arrowKeyAlreadySent = true;
                 boolean actuallySend = false;
                 String toSend = "huh?";
                 if (event.getCode() == KeyCode.UP) {
@@ -160,8 +182,6 @@ public class Controller {
                     toSend = "right";
                     actuallySend = true;
                 }
-                event.consume();
-
                 if (actuallySend) {
                     draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
@@ -173,6 +193,13 @@ public class Controller {
                         }
                     }
                 }
+            }
+        });
+
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                arrowKeyAlreadySent = false;
             }
         });
     }
