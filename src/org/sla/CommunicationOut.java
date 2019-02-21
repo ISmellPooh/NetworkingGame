@@ -48,11 +48,24 @@ public class CommunicationOut implements Runnable {
                 Message finalMessage = message;
                 System.out.println("CommunicationOut GOT: " + message);
 
-                //writer.writeObject(message);
-                //writer.flush();
-
-                //Platform.runLater(() -> statusText.setText("SENT: " + finalMessage));
-                //System.out.println("CommunicationOut SENT: " + message);
+                if (serverMode) {
+                    int clientCount = 0;
+                    Iterator<ObjectOutputStream> allClients = outStreams.iterator();
+                    while (allClients.hasNext()) {
+                        ObjectOutputStream nextWriter = allClients.next();
+                        // writer writes to 1 socket's output stream
+                        nextWriter.writeObject(message);
+                        nextWriter.flush();
+                        System.out.println("CommunicationOut to Client " + clientCount + ": " + message);
+                        clientCount = clientCount + 1;
+                    }
+                } else {
+                    // writer writes to 1 socket's output stream
+                    writer.writeObject(message);
+                    writer.flush();
+                }
+                Platform.runLater(() -> statusText.setText("SENT: " + finalMessage));
+                System.out.println("CommunicationOut SENT: " + message);
             }
 
             // while loop ended!
