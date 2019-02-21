@@ -21,7 +21,7 @@ public class GUIUpdater implements Runnable {
             if (message.data().equals("up")) {
                 // move rover1 up
                 System.out.println("up");
-                myController.moveUPandDraw();
+                //myController.moveUPandDraw();
             }
             if (message.data().equals("down")) {
                 // move rover1 down
