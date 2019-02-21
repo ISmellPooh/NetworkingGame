@@ -160,6 +160,7 @@ public class Controller {
                     toSend = "right";
                     actuallySend = true;
                 }
+                event.consume();
 
                 if (actuallySend) {
                     draw();
