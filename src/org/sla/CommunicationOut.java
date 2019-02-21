@@ -24,13 +24,13 @@ public class CommunicationOut implements Runnable {
         serverMode = false;
     }
 
-    CommunicationOut(Socket s, ArrayList<ObjectOutputStream> outs, Queue outQ, TextField status) {
+    /*CommunicationOut(Socket s, ArrayList<ObjectOutputStream> outs, Queue outQ, TextField status) {
         socket = s;
         outStreams = outs;
         outQueue = outQ;
         statusText = status;
         serverMode = true;
-    }
+    }*/
 
     @Override
     public void run() {
