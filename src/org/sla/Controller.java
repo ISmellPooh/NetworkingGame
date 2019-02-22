@@ -269,7 +269,8 @@ public class Controller {
     void moveUPAndDraw() {
         if (serverMode) {
             yr2 = yr2 - 1;
-        } else {
+        }
+        if (!serverMode) {
             yr1 = yr1 - 1;
         }
         draw();
@@ -278,7 +279,8 @@ public class Controller {
     void moveDOWNAndDraw() {
         if (serverMode) {
             yr2 = yr2 + 1;
-        } else {
+        }
+        if (!serverMode) {
             yr1 = yr1 + 1;
         }
         draw();
@@ -287,7 +289,8 @@ public class Controller {
     void moveLEFTAndDraw() {
         if (serverMode) {
             xr2 = xr2 - 1;
-        } else {
+        }
+        if (!serverMode) {
             xr1 = xr1 - 1;
         }
         draw();
@@ -296,7 +299,8 @@ public class Controller {
     void moveRIGHTAndDraw() {
         if (serverMode) {
             xr2 = xr2 + 1;
-        } else {
+        }
+        if (!serverMode){
             xr1 = xr1 + 1;
         }
         draw();
