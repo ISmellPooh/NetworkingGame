@@ -23,6 +23,7 @@ public class Queue {
             } else {
                 nextPutLocation = nextPutLocation + 1;
             }
+            System.out.println("PUT " + obj);
             return true;
         }
         return false;

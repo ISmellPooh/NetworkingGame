@@ -2,9 +2,9 @@ package org.sla;
 
 public class GUIUpdater implements Runnable {
     private Queue originalQueue;
-    private Controller myController;
+    //private Controller myController;
 
-    GUIUpdater(Queue queue, Controller controller) {
+    GUIUpdater(Queue queue) {
         originalQueue = queue;
     }
 

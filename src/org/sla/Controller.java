@@ -127,12 +127,8 @@ public class Controller {
                 if (actuallySend) {
                     draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    while (!Thread.interrupted()) {
-                        outQueue.put(msgToSend);
-                        while (toSend == null) {
-                            Thread.currentThread().yield();
-                            outQueue.put(msgToSend);
-                        }
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
                     }
                 }
             }
@@ -185,12 +181,8 @@ public class Controller {
                 if (actuallySend) {
                     draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    while (!Thread.interrupted()) {
-                        outQueue.put(msgToSend);
-                        while (toSend == null) {
-                            Thread.currentThread().yield();
-                            outQueue.put(msgToSend);
-                        }
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
                     }
                 }
             }
