@@ -52,7 +52,7 @@ public class Controller {
         inQueue = new Queue();
         outQueue = new Queue();
         connected = false;
-        GUIUpdater updater = new GUIUpdater(inQueue, this);
+        GUIUpdater updater = new GUIUpdater(inQueue);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
 
