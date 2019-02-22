@@ -268,36 +268,36 @@ public class Controller {
 
     void moveUPAndDraw() {
         if (serverMode) {
-            yr1 = yr1 - 1;
-        } else {
             yr2 = yr2 - 1;
+        } else {
+            yr1 = yr1 - 1;
         }
         draw();
     }
 
     void moveDOWNAndDraw() {
         if (serverMode) {
-            yr1 = yr1 + 1;
-        } else {
             yr2 = yr2 + 1;
+        } else {
+            yr1 = yr1 + 1;
         }
         draw();
     }
 
     void moveLEFTAndDraw() {
         if (serverMode) {
-            xr1 = xr1 - 1;
-        } else {
             xr2 = xr2 - 1;
+        } else {
+            xr1 = xr1 - 1;
         }
         draw();
     }
 
     void moveRIGHTAndDraw() {
         if (serverMode) {
-            xr1 = xr1 + 1;
-        } else {
             xr2 = xr2 + 1;
+        } else {
+            xr1 = xr1 + 1;
         }
         draw();
     }
