@@ -36,14 +36,14 @@ public class Controller {
     boolean arrowKeyAlreadySent;
 
     private GraphicsContext graphicsContext;
-    private GraphicsContext graphicsContext2;
+    //private GraphicsContext graphicsContext2;
 
     private Queue outQueue;
     private Queue inQueue;
     private Stage stage;
 
     public Canvas canvas;
-    public Canvas canvas2;
+    //public Canvas canvas2;
 
     private boolean serverMode;
     static boolean connected;
@@ -74,11 +74,11 @@ public class Controller {
         String imagePath3 = "org/sla/rover2.png";
         rover2 = new Image(imagePath3);
 
-        graphicsContext2 = canvas2.getGraphicsContext2D();
+        //graphicsContext2 = canvas2.getGraphicsContext2D();
 
         draw();
         canvas.setFocusTraversable(true);
-        canvas2.setFocusTraversable(false);
+        //canvas2.setFocusTraversable(false);
     }
 
     void setServerMode() {
@@ -260,10 +260,10 @@ public class Controller {
         graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
         graphicsContext.drawImage(rover2, xr2, yr2, 50, 50);
 
-        graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
+        /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(rover1, xr1, yr1, 50, 50);
-        graphicsContext2.drawImage(rover2, xr2, yr2, 50, 50);
+        graphicsContext2.drawImage(rover2, xr2, yr2, 50, 50);*/
     }
 
     void moveUPAndDraw() {
@@ -281,6 +281,7 @@ public class Controller {
         } else {
             yr2 = yr2 + 1;
         }
+        draw();
     }
 
     void moveLEFTAndDraw() {
