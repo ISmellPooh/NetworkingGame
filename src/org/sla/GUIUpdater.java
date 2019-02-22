@@ -6,6 +6,7 @@ public class GUIUpdater implements Runnable {
 
     GUIUpdater(Queue queue, Controller controller) {
         originalQueue = queue;
+        myController = controller;
     }
 
     public void run() {
