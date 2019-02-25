@@ -155,8 +155,19 @@ public class Controller {
                 String toSend = "why?";
                 boolean actuallySend = false;
                 if (event.getClickCount() == 5) {
-                    graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+                    if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
+                        if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
+                            graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+                        }
+                    }
                 }
+            }
+        });
+
+        canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mouseAlreadySent = false;
             }
         });
     }
@@ -227,8 +238,19 @@ public class Controller {
                 String toSend = "why?";
                 boolean actuallySend = false;
                 if (event.getClickCount() == 5) {
-                    graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+                    if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
+                        if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
+                            graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+                        }
+                    }
                 }
+            }
+        });
+
+        canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mouseAlreadySent = false;
             }
         });
     }
