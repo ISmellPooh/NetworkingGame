@@ -163,6 +163,7 @@ public class Controller {
                         }
                     }
                 }
+                System.out.println("Destruction Active");
             }
         });
 
@@ -248,7 +249,9 @@ public class Controller {
                         }
                     }
                 }
+                System.out.println("Destruction Active");
             }
+
         });
 
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
