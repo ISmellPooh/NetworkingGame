@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.canvas.Canvas;
 
@@ -34,6 +35,7 @@ public class Controller {
     int r2Health;
 
     boolean arrowKeyAlreadySent;
+    boolean mouseAlreadySent;
 
     private GraphicsContext graphicsContext;
     //private GraphicsContext graphicsContext2;
@@ -57,6 +59,7 @@ public class Controller {
         updaterThread.start();
 
         arrowKeyAlreadySent = false;
+        mouseAlreadySent = false;
 
         xbi = 0;
         ybi = 0;
@@ -139,6 +142,23 @@ public class Controller {
                 arrowKeyAlreadySent = false;
             }
         });
+
+        canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (mouseAlreadySent) {
+                    event.consume();
+                    return;
+                }
+
+                mouseAlreadySent = true;
+                String toSend = "why?";
+                boolean actuallySend = false;
+                if (event.getClickCount() == 5) {
+                    graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+                }
+            }
+        });
     }
 
     void setClientMode() {
@@ -192,6 +212,23 @@ public class Controller {
             @Override
             public void handle(KeyEvent event) {
                 arrowKeyAlreadySent = false;
+            }
+        });
+
+        canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (mouseAlreadySent) {
+                    event.consume();
+                    return;
+                }
+
+                mouseAlreadySent = true;
+                String toSend = "why?";
+                boolean actuallySend = false;
+                if (event.getClickCount() == 5) {
+                    graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+                }
             }
         });
     }
@@ -259,6 +296,8 @@ public class Controller {
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
         graphicsContext.drawImage(rover2, xr2, yr2, 50, 50);
+        graphicsContext.rect(xr1, yr1, 50, 50);
+        graphicsContext.rect(xr2, yr2, 50, 50);
 
         /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
