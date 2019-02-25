@@ -39,6 +39,10 @@ public class GUIUpdater implements Runnable {
                 myController.moveRIGHTAndDraw();
                 System.out.println("right");
             }
+            if (message.data().equals("playerClick")) {
+                myController.playerClicked();
+                System.out.println("playerClick");
+            }
         }
     }
 }

@@ -158,6 +158,8 @@ public class Controller {
                     if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
                         if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
                             graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+                            toSend = "p1Click";
+                            actuallySend = true;
                         }
                     }
                 }
@@ -241,6 +243,8 @@ public class Controller {
                     if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
                         if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
                             graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+                            toSend = "p2Click";
+                            actuallySend = true;
                         }
                     }
                 }
@@ -318,8 +322,6 @@ public class Controller {
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
         graphicsContext.drawImage(rover2, xr2, yr2, 50, 50);
-        graphicsContext.rect(xr1, yr1, 50, 50);
-        graphicsContext.rect(xr2, yr2, 50, 50);
 
         /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
@@ -363,6 +365,16 @@ public class Controller {
         }
         if (!serverMode){
             xr1 = xr1 + 1;
+        }
+        draw();
+    }
+
+    void playerClicked() {
+        if (serverMode) {
+            graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+        }
+        if (!serverMode) {
+            graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
         }
         draw();
     }
