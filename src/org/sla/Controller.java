@@ -62,8 +62,8 @@ public class Controller {
         ybi = 0;
         xr1 = 10;
         yr1 = 10;
-        xr2 = 100;
-        yr2 = 100;
+        xr2 = 500;
+        yr2 = 500;
         r1Health = 10;
         r2Health = 10;
         graphicsContext = canvas.getGraphicsContext2D();
