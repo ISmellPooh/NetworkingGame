@@ -31,11 +31,16 @@ public class Controller {
     int yr1;
     int xr2;
     int yr2;
+    int wr1;
+    int hr1;
+    int wr2;
+    int hr2;
     int r1Health;
     int r2Health;
 
     boolean arrowKeyAlreadySent;
     boolean mouseAlreadySent;
+    int clickCount;
 
     private GraphicsContext graphicsContext;
     //private GraphicsContext graphicsContext2;
@@ -67,6 +72,10 @@ public class Controller {
         yr1 = 10;
         xr2 = 500;
         yr2 = 500;
+        wr1 = 50;
+        hr1 = 50;
+        wr2 = 50;
+        hr2 = 50;
         r1Health = 10;
         r2Health = 10;
         graphicsContext = canvas.getGraphicsContext2D();
@@ -82,6 +91,7 @@ public class Controller {
         draw();
         canvas.setFocusTraversable(true);
         //canvas2.setFocusTraversable(false);
+        clickCount = 0;
     }
 
     void setServerMode() {
@@ -150,19 +160,24 @@ public class Controller {
                     event.consume();
                     return;
                 }
+                if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
+                    if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
+                        clickCount = clickCount + 1;
+                    }
+                }
 
                 mouseAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
-                if (event.getClickCount() == 5) {
-                    if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
-                        if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
-                            graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
-                            System.out.println("Destruction Active");
-                            toSend = "p1Click";
-                            actuallySend = true;
-                        }
-                    }
+                if (clickCount == 5) {
+                    wr2 = 0;
+                    hr2 = 0;
+                    graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+                    // change size to 0
+                    System.out.println("Destruction Active");
+                    toSend = "p2Click";
+                    actuallySend = true;
+                    clickCount = 0;
                 }
                 if (actuallySend) {
                     draw();
@@ -244,20 +259,26 @@ public class Controller {
                     return;
                 }
 
+                if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
+                    if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
+                        clickCount = clickCount + 1;
+                    }
+                }
+
                 mouseAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
-                if (event.getClickCount() == 5) {
-                    if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
-                        if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
-                            graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
-                            System.out.println("Destruction Active");
-                            toSend = "p2Click";
-                            actuallySend = true;
-                        }
-                    }
+                if (clickCount == 5) {
+                    wr1 = 0;
+                    hr1 = 0;
+                    graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+                    // change size to 0
+                    System.out.println("Destruction Active");
+                    toSend = "p2Click";
+                    actuallySend = true;
+                    clickCount = 0;
                 }
-                if (actuallySend) {
+\                if (actuallySend) {
                     draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                     if (!outQueue.put(msgToSend)) {
@@ -333,12 +354,12 @@ public class Controller {
         }
     }
 
-    void draw() {
+    private void draw() {
         System.out.println("I DREW");
         graphicsContext.clearRect(0,0,canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
-        graphicsContext.drawImage(rover1, xr1, yr1, 50, 50);
-        graphicsContext.drawImage(rover2, xr2, yr2, 50, 50);
+        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
 
         /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
@@ -388,10 +409,10 @@ public class Controller {
 
     void playerClicked() {
         if (serverMode) {
-            graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
         if (!serverMode) {
-            graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
         }
         draw();
     }
@@ -399,5 +420,4 @@ public class Controller {
     public void setStage(Stage theStage) {
         stage = theStage;
     }
-
 }
