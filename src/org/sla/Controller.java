@@ -164,6 +164,13 @@ public class Controller {
                         }
                     }
                 }
+                if (actuallySend) {
+                    draw();
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
+                    }
+                }
             }
         });
 
@@ -248,6 +255,13 @@ public class Controller {
                             toSend = "p2Click";
                             actuallySend = true;
                         }
+                    }
+                }
+                if (actuallySend) {
+                    draw();
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
                     }
                 }
             }
