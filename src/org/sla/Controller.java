@@ -158,12 +158,12 @@ public class Controller {
                     if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
                         if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
                             graphicsContext.drawImage(rover2, xr2, yr2, 0, 0);
+                            System.out.println("Destruction Active");
                             toSend = "p1Click";
                             actuallySend = true;
                         }
                     }
                 }
-                System.out.println("Destruction Active");
             }
         });
 
@@ -244,12 +244,12 @@ public class Controller {
                     if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
                         if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
                             graphicsContext.drawImage(rover1, xr1, yr1, 0, 0);
+                            System.out.println("Destruction Active");
                             toSend = "p2Click";
                             actuallySend = true;
                         }
                     }
                 }
-                System.out.println("Destruction Active");
             }
 
         });
