@@ -278,7 +278,7 @@ public class Controller {
                     actuallySend = true;
                     clickCount = 0;
                 }
-\                if (actuallySend) {
+                if (actuallySend) {
                     draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                     if (!outQueue.put(msgToSend)) {
