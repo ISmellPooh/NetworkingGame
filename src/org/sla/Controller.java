@@ -181,10 +181,12 @@ public class Controller {
                     clickCount = 0;
                 }
                 if (actuallySend) {
-                    draw();
-                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    if (!outQueue.put(msgToSend)) {
-                        Thread.currentThread().yield();
+                    if (clickCount == 5) {
+                        draw();
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                        if (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
+                        }
                     }
                 }
             }
@@ -280,10 +282,12 @@ public class Controller {
                     clickCount = 0;
                 }
                 if (actuallySend) {
-                    draw();
-                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    if (!outQueue.put(msgToSend)) {
-                        Thread.currentThread().yield();
+                    if (clickCount == 5) {
+                        draw();
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                        if (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
+                        }
                     }
                 }
             }
