@@ -176,15 +176,17 @@ public class Controller {
                     graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
                     // change size to 0
                     System.out.println("Destruction Active");
-                    toSend = "p2Click";
+                    toSend = "p1Click";
                     actuallySend = true;
                     clickCount = 0;
                 }
                 if (actuallySend) {
-                    draw();
-                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    if (!outQueue.put(msgToSend)) {
-                        Thread.currentThread().yield();
+                    if (wr2 == 0 && hr2 == 0) {
+                        draw();
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                        if (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
+                        }
                     }
                 }
             }
@@ -280,10 +282,12 @@ public class Controller {
                     clickCount = 0;
                 }
                 if (actuallySend) {
-                    draw();
-                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                    if (!outQueue.put(msgToSend)) {
-                        Thread.currentThread().yield();
+                    if (wr1 == 0 && hr1 == 0) {
+                        draw();
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                        if (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
+                        }
                     }
                 }
             }
