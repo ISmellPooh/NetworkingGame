@@ -272,8 +272,6 @@ public class Controller {
                 String toSend = "why?";
                 boolean actuallySend = false;
                 if (clickCount == 5) {
-                    wr1 = 0;
-                    hr1 = 0;
                     graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
                     // change size to 0
                     System.out.println("Destruction Active");
@@ -414,10 +412,14 @@ public class Controller {
 
     void playerClicked(int whichPlayer) {
         if (whichPlayer == 1) {
-            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+            wr2 = 0;
+            hr2 = 0;
+            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
         }
         if (whichPlayer == 2) {
-            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+            wr1 = 0;
+            hr1 = 0;
+            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
         draw();
     }
