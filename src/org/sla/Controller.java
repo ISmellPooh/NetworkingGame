@@ -414,14 +414,10 @@ public class Controller {
 
     void playerClicked() {
         if (serverMode) {
-            if (clickCount == 5) {
-                graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-            }
+            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
         if (!serverMode) {
-            if (clickCount == 5) {
-                graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-            }
+            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
         }
         draw();
     }
