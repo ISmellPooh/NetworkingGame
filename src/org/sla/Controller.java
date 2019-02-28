@@ -412,11 +412,11 @@ public class Controller {
         draw();
     }
 
-    void playerClicked() {
-        if (serverMode) {
+    void playerClicked(int whichPlayer) {
+        if (whichPlayer == 1) {
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
-        if (!serverMode) {
+        if (whichPlayer == 2) {
             graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
         }
         draw();
