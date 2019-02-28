@@ -41,11 +41,11 @@ public class GUIUpdater implements Runnable {
             }
             if (message.data().equals("p1Click")) {
                 myController.playerClicked(1);
-                System.out.println("playerClick");
+                System.out.println("p1Click");
             }
             if (message.data().equals("p2Click")) {
                 myController.playerClicked(2);
-                System.out.println("playerClick");
+                System.out.println("p2Click");
             }
         }
     }
