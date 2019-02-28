@@ -160,6 +160,7 @@ public class Controller {
                     event.consume();
                     return;
                 }
+
                 if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
                     if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
                         clickCount = clickCount + 1;
@@ -192,7 +193,9 @@ public class Controller {
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                mouseAlreadySent = false;
+                if (clickCount == 5) {
+                    mouseAlreadySent = false;
+                }
             }
         });
     }
@@ -292,7 +295,9 @@ public class Controller {
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                mouseAlreadySent = false;
+                if (clickCount == 5) {
+                    mouseAlreadySent = false;
+                }
             }
         });
     }
@@ -356,7 +361,7 @@ public class Controller {
 
     private void draw() {
         System.out.println("I DREW");
-        graphicsContext.clearRect(0,0,canvas.getWidth(), canvas.getHeight());
+        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
