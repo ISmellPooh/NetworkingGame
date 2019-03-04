@@ -100,7 +100,9 @@ public class Controller {
         String imagePath3 = "org/sla/rover2.png";
         rover2 = new Image(imagePath3);
         String imagePath4 = "org/sla/projectile1.png";
-        projectile = new Image(imagePath4);
+        projectile1 = new Image(imagePath4);
+        String imagePath5 = "org/sla/projectile2.png";
+        projectile2 = new Image(imagePath5);
 
         //graphicsContext2 = canvas2.getGraphicsContext2D();
 
