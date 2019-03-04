@@ -477,20 +477,6 @@ public class Controller {
         draw();
     }
 
-    void playerClicked(int whichPlayer) {
-        if (whichPlayer == 1) {
-            wr2 = 0;
-            hr2 = 0;
-            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-        }
-        if (whichPlayer == 2) {
-            wr1 = 0;
-            hr1 = 0;
-            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-        }
-        draw();
-    }
-
     void shootUP() {
         if (serverMode) {
             py2 = py2 - 1;
@@ -527,6 +513,20 @@ public class Controller {
         }
         if (!serverMode) {
             px1 = px1 + 1;
+        }
+        draw();
+    }
+
+    void playerClicked(int whichPlayer) {
+        if (whichPlayer == 1) {
+            wr2 = 0;
+            hr2 = 0;
+            graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+        }
+        if (whichPlayer == 2) {
+            wr1 = 0;
+            hr1 = 0;
+            graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
         draw();
     }

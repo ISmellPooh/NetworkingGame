@@ -39,14 +39,6 @@ public class GUIUpdater implements Runnable {
                 myController.moveRIGHTAndDraw();
                 System.out.println("right");
             }
-            if (message.data().equals("p1Click")) {
-                myController.playerClicked(1);
-                System.out.println("p1Click");
-            }
-            if (message.data().equals("p2Click")) {
-                myController.playerClicked(2);
-                System.out.println("p2Click");
-            }
             if (message.data().equals("p1ShootUp")) {
                 myController.shootUP();
                 System.out.println("p1ShootUp");
@@ -63,6 +55,14 @@ public class GUIUpdater implements Runnable {
                 myController.shootRIGHT();
                 System.out.println("p1ShootRight");
             }
+            if (message.data().equals("p1Click")) {
+                myController.playerClicked(1);
+                System.out.println("p1Click");
+            }
+            if (message.data().equals("p2Click")) {
+                myController.playerClicked(2);
+                System.out.println("p2Click");
+            }
         }
     }
-}//
+}
