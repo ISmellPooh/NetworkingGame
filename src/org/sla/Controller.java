@@ -25,7 +25,8 @@ public class Controller {
     private Image backgroundImage;
     private Image rover1;
     private Image rover2;
-    private Image projectile;
+    private Image projectile1;
+    private Image projectile2;
     int xbi;
     int ybi;
     int xr1;
@@ -98,7 +99,7 @@ public class Controller {
         rover1 = new Image(imagePath2);
         String imagePath3 = "org/sla/rover2.png";
         rover2 = new Image(imagePath3);
-        String imagePath4 = "org/sla/projectile.png";
+        String imagePath4 = "org/sla/projectile1.png";
         projectile = new Image(imagePath4);
 
         //graphicsContext2 = canvas2.getGraphicsContext2D();
@@ -186,7 +187,7 @@ public class Controller {
                 String toSend = "why?";
                 boolean actuallySend = false;
                 if (clickCount >= 1) {
-                    graphicsContext.drawImage(projectile, px1, py1, pw, ph);
+                    graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
                     if (yr2 <= yr1) {
                         py1 = py1 - 1;
                         toSend = "p1ShootUp";
@@ -312,7 +313,7 @@ public class Controller {
                 String toSend = "why?";
                 boolean actuallySend = false;
                 if (clickCount >= 1) {
-                    graphicsContext.drawImage(projectile, px2, py2, pw, ph);
+                    graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
                     if (yr1 <= yr2) {
                         py2 = py2 - 1;
                         toSend = "p2ShootUp";
@@ -430,7 +431,8 @@ public class Controller {
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-
+        graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
+        graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
         /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
         graphicsContext2.drawImage(rover1, xr1, yr1, 50, 50);
