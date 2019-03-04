@@ -47,6 +47,22 @@ public class GUIUpdater implements Runnable {
                 myController.playerClicked(2);
                 System.out.println("p2Click");
             }
+            if (message.data().equals("p1ShootUp")) {
+                myController.shootUP();
+                System.out.println("p1ShootUp");
+            }
+            if (message.data().equals("p1ShootDown")) {
+                myController.shootDOWN();
+                System.out.println("p1ShootDown");
+            }
+            if (message.data().equals("p1ShootLeft")) {
+                myController.shootLEFT();
+                System.out.println("p1ShootLeft");
+            }
+            if (message.data().equals("p1ShootRight")) {
+                myController.shootRIGHT();
+                System.out.println("p1ShootRight");
+            }
         }
     }
 }//

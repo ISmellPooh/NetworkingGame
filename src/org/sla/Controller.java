@@ -38,6 +38,10 @@ public class Controller {
     int hr2;
     int pw;
     int ph;
+    int px1;
+    int py1;
+    int px2;
+    int py2;
     int r1Health;
     int r2Health;
 
@@ -81,6 +85,10 @@ public class Controller {
         hr2 = 50;
         pw = 10;
         ph = 10;
+        px1 = xr1 + 25;
+        py1 = yr1 + 25;
+        px2 = xr2 + 25;
+        py2 = yr2 + 25;
         r1Health = 10;
         r2Health = 10;
         graphicsContext = canvas.getGraphicsContext2D();
@@ -187,6 +195,31 @@ public class Controller {
                     actuallySend = true;
                     clickCount = 0;
                 }
+
+                if (clickCount >= 1) {
+                    graphicsContext.drawImage(projectile, px1, py1, pw, ph);
+                    if (yr2 <= yr1) {
+                        py1 = py1 - 1;
+                        toSend = "p1ShootUp";
+                        actuallySend = true;
+                    }
+                    if (yr2 >= yr1) {
+                        py1 = py1 + 1;
+                        toSend = "p1ShootDown";
+                        actuallySend = true;
+                    }
+                    if (xr2 <= xr1) {
+                        px1 = px1 - 1;
+                        toSend = "p1ShootLeft";
+                        actuallySend = true;
+                    }
+                    if (xr2 >= xr1) {
+                        px1 = px1 + 1;
+                        toSend = "p1ShootRight";
+                        actuallySend = true;
+                    }
+                }
+
                 if (actuallySend) {
                     if (wr2 == 0 && hr2 == 0) {
                         draw();
@@ -275,11 +308,6 @@ public class Controller {
                     }
                 }
 
-                if (clickCount >= 1) {
-                    graphicsContext.drawImage(projectile, xr2 + 25, yr2 + 25, pw, ph);
-                    
-                }
-
                 mouseAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
@@ -293,6 +321,31 @@ public class Controller {
                     actuallySend = true;
                     clickCount = 0;
                 }
+
+                if (clickCount >= 1) {
+                    graphicsContext.drawImage(projectile, px2, py2, pw, ph);
+                    if (yr1 <= yr2) {
+                        py2 = py2 - 1;
+                        toSend = "p2ShootUp";
+                        actuallySend = true;
+                    }
+                    if (yr1 >= yr2) {
+                        py2 = py2 + 1;
+                        toSend = "p2ShootDown";
+                        actuallySend = true;
+                    }
+                    if (xr1 <= xr2) {
+                        px2 = px2 - 1;
+                        toSend = "p2ShootLeft";
+                        actuallySend = true;
+                    }
+                    if (xr1 >= xr2) {
+                        px2 = px2 + 1;
+                        toSend = "p2ShootRight";
+                        actuallySend = true;
+                    }
+                }
+
                 if (actuallySend) {
                     if (wr1 == 0 && hr1 == 0) {
                         draw();
@@ -434,6 +487,46 @@ public class Controller {
             wr1 = 0;
             hr1 = 0;
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+        }
+        draw();
+    }
+
+    void shootUP() {
+        if (serverMode) {
+            py2 = py2 - 1;
+        }
+        if (!serverMode) {
+            py1 = py1 - 1;
+        }
+        draw();
+    }
+
+    void shootDOWN() {
+        if (serverMode) {
+            py2 = py2 + 1;
+        }
+        if (!serverMode) {
+            py1 = py1 + 1;
+        }
+        draw();
+    }
+
+    void shootLEFT() {
+        if (serverMode) {
+            px2 = px2 - 1;
+        }
+        if (!serverMode) {
+            px1 = px1 - 1;
+        }
+        draw();
+    }
+
+    void shootRIGHT() {
+        if (serverMode) {
+            px2 = px2 + 1;
+        }
+        if (!serverMode) {
+            px1 = px1 + 1;
         }
         draw();
     }
