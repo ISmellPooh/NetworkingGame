@@ -185,17 +185,6 @@ public class Controller {
                 mouseAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
-                if (clickCount == 5) {
-                    wr2 = 0;
-                    hr2 = 0;
-                    graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-                    // change size to 0
-                    System.out.println("Destruction Active");
-                    toSend = "p1Click";
-                    actuallySend = true;
-                    clickCount = 0;
-                }
-
                 if (clickCount >= 1) {
                     graphicsContext.drawImage(projectile, px1, py1, pw, ph);
                     if (yr2 <= yr1) {
@@ -218,6 +207,17 @@ public class Controller {
                         toSend = "p1ShootRight";
                         actuallySend = true;
                     }
+                }
+
+                if (clickCount == 5) {
+                    wr2 = 0;
+                    hr2 = 0;
+                    graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+                    // change size to 0
+                    System.out.println("Destruction Active");
+                    toSend = "p1Click";
+                    actuallySend = true;
+                    clickCount = 0;
                 }
 
                 if (actuallySend) {
@@ -311,17 +311,6 @@ public class Controller {
                 mouseAlreadySent = true;
                 String toSend = "why?";
                 boolean actuallySend = false;
-                if (clickCount == 5) {
-                    wr1 = 0;
-                    hr1 = 0;
-                    graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-                    // change size to 0
-                    System.out.println("Destruction Active");
-                    toSend = "p2Click";
-                    actuallySend = true;
-                    clickCount = 0;
-                }
-
                 if (clickCount >= 1) {
                     graphicsContext.drawImage(projectile, px2, py2, pw, ph);
                     if (yr1 <= yr2) {
@@ -344,6 +333,17 @@ public class Controller {
                         toSend = "p2ShootRight";
                         actuallySend = true;
                     }
+                }
+
+                if (clickCount == 5) {
+                    wr1 = 0;
+                    hr1 = 0;
+                    graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+                    // change size to 0
+                    System.out.println("Destruction Active");
+                    toSend = "p2Click";
+                    actuallySend = true;
+                    clickCount = 0;
                 }
 
                 if (actuallySend) {
