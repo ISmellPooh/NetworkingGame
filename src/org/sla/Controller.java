@@ -25,6 +25,7 @@ public class Controller {
     private Image backgroundImage;
     private Image rover1;
     private Image rover2;
+    private Image projectile;
     int xbi;
     int ybi;
     int xr1;
@@ -35,6 +36,8 @@ public class Controller {
     int hr1;
     int wr2;
     int hr2;
+    int pw;
+    int ph;
     int r1Health;
     int r2Health;
 
@@ -76,6 +79,8 @@ public class Controller {
         hr1 = 50;
         wr2 = 50;
         hr2 = 50;
+        pw = 10;
+        ph = 10;
         r1Health = 10;
         r2Health = 10;
         graphicsContext = canvas.getGraphicsContext2D();
@@ -85,6 +90,8 @@ public class Controller {
         rover1 = new Image(imagePath2);
         String imagePath3 = "org/sla/rover2.png";
         rover2 = new Image(imagePath3);
+        String imagePath4 = "org/sla/projectile.png";
+        projectile = new Image(imagePath4);
 
         //graphicsContext2 = canvas2.getGraphicsContext2D();
 
@@ -266,6 +273,11 @@ public class Controller {
                     if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
                         clickCount = clickCount + 1;
                     }
+                }
+
+                if (clickCount >= 1) {
+                    graphicsContext.drawImage(projectile, xr2 + 25, yr2 + 25, pw, ph);
+                    
                 }
 
                 mouseAlreadySent = true;
