@@ -192,22 +192,22 @@ public class Controller {
                     graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
                     if (yr2 <= yr1) {
                         py1 = py1 - 1;
-                        toSend = "p1ShootUp";
+                        toSend = "ShootUp";
                         actuallySend = true;
                     }
                     if (yr2 >= yr1) {
                         py1 = py1 + 1;
-                        toSend = "p1ShootDown";
+                        toSend = "ShootDown";
                         actuallySend = true;
                     }
                     if (xr2 <= xr1) {
                         px1 = px1 - 1;
-                        toSend = "p1ShootLeft";
+                        toSend = "ShootLeft";
                         actuallySend = true;
                     }
                     if (xr2 >= xr1) {
                         px1 = px1 + 1;
-                        toSend = "p1ShootRight";
+                        toSend = "ShootRight";
                         actuallySend = true;
                     }
                 }
@@ -318,22 +318,22 @@ public class Controller {
                     graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
                     if (yr1 <= yr2) {
                         py2 = py2 - 1;
-                        toSend = "p2ShootUp";
+                        toSend = "ShootUp";
                         actuallySend = true;
                     }
                     if (yr1 >= yr2) {
                         py2 = py2 + 1;
-                        toSend = "p2ShootDown";
+                        toSend = "ShootDown";
                         actuallySend = true;
                     }
                     if (xr1 <= xr2) {
                         px2 = px2 - 1;
-                        toSend = "p2ShootLeft";
+                        toSend = "ShootLeft";
                         actuallySend = true;
                     }
                     if (xr1 >= xr2) {
                         px2 = px2 + 1;
-                        toSend = "p2ShootRight";
+                        toSend = "ShootRight";
                         actuallySend = true;
                     }
                 }
