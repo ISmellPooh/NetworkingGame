@@ -64,6 +64,9 @@ public class Controller {
     static boolean connected;
 
     public void initialize() {
+        AnimatorThread animator = new AnimatorThread(backgroundImage, rover1, rover2, projectile1, projectile2, xbi, ybi, xr1, yr1, xr2, yr2, wr1, hr1, wr2, hr2, pw, ph, px1, py1, px2, py2);
+        Thread animatorThread = new Thread(animator);
+        animatorThread.start();
         inQueue = new Queue();
         outQueue = new Queue();
         connected = false;
@@ -106,7 +109,6 @@ public class Controller {
 
         //graphicsContext2 = canvas2.getGraphicsContext2D();
 
-        draw();
         canvas.setFocusTraversable(true);
         //canvas2.setFocusTraversable(false);
         clickCount = 0;
@@ -156,7 +158,6 @@ public class Controller {
                     actuallySend = true;
                 }
                 if (actuallySend) {
-                    draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                     if (!outQueue.put(msgToSend)) {
                         Thread.currentThread().yield();
@@ -225,7 +226,6 @@ public class Controller {
 
                 if (actuallySend) {
                     if (wr2 == 0 && hr2 == 0) {
-                        draw();
                         Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                         if (!outQueue.put(msgToSend)) {
                             Thread.currentThread().yield();
@@ -281,7 +281,6 @@ public class Controller {
                     actuallySend = true;
                 }
                 if (actuallySend) {
-                    draw();
                     Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                     if (!outQueue.put(msgToSend)) {
                         Thread.currentThread().yield();
@@ -351,7 +350,6 @@ public class Controller {
 
                 if (actuallySend) {
                     if (wr1 == 0 && hr1 == 0) {
-                        draw();
                         Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                         if (!outQueue.put(msgToSend)) {
                             Thread.currentThread().yield();
@@ -427,20 +425,6 @@ public class Controller {
         }
     }
 
-    private void draw() {
-        System.out.println("I DREW");
-        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
-        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-        graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
-        graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
-        /*graphicsContext2.clearRect(0,0,canvas2.getWidth(), canvas2.getHeight());
-        graphicsContext2.drawImage(backgroundImage, xbi, ybi, canvas2.getWidth(), canvas2.getHeight());
-        graphicsContext2.drawImage(rover1, xr1, yr1, 50, 50);
-        graphicsContext2.drawImage(rover2, xr2, yr2, 50, 50);*/
-    }
-
     void moveUPAndDraw() {
         if (serverMode) {
             yr2 = yr2 - 1;
@@ -448,7 +432,6 @@ public class Controller {
         if (!serverMode) {
             yr1 = yr1 - 1;
         }
-        draw();
     }
 
     void moveDOWNAndDraw() {
@@ -458,7 +441,6 @@ public class Controller {
         if (!serverMode) {
             yr1 = yr1 + 1;
         }
-        draw();
     }
 
     void moveLEFTAndDraw() {
@@ -468,7 +450,6 @@ public class Controller {
         if (!serverMode) {
             xr1 = xr1 - 1;
         }
-        draw();
     }
 
     void moveRIGHTAndDraw() {
@@ -478,7 +459,6 @@ public class Controller {
         if (!serverMode){
             xr1 = xr1 + 1;
         }
-        draw();
     }
 
     void shootUP() {
@@ -488,7 +468,6 @@ public class Controller {
         if (!serverMode) {
             py1 = py1 - 1;
         }
-        draw();
     }
 
     void shootDOWN() {
@@ -498,7 +477,6 @@ public class Controller {
         if (!serverMode) {
             py1 = py1 + 1;
         }
-        draw();
     }
 
     void shootLEFT() {
@@ -508,7 +486,6 @@ public class Controller {
         if (!serverMode) {
             px1 = px1 - 1;
         }
-        draw();
     }
 
     void shootRIGHT() {
@@ -518,7 +495,6 @@ public class Controller {
         if (!serverMode) {
             px1 = px1 + 1;
         }
-        draw();
     }
 
     void playerClicked(int whichPlayer) {
@@ -532,7 +508,6 @@ public class Controller {
             hr1 = 0;
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
-        draw();
     }
 
     public void setStage(Stage theStage) {

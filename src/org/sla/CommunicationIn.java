@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class CommunicationIn implements Runnable{
+public class CommunicationIn implements Runnable {
     private Socket socket;
     private ObjectInputStream messageReader;
     private Queue inQueue;
