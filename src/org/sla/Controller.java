@@ -507,7 +507,7 @@ public class Controller {
         }
     }
 
-    /*void playerClicked(int whichPlayer) {
+    void playerClicked(int whichPlayer) {
         if (whichPlayer == 1) {
             wr2 = 0;
             hr2 = 0;
@@ -518,7 +518,7 @@ public class Controller {
             hr1 = 0;
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
-    }*/
+    }
 
     public void setStage(Stage theStage) {
         stage = theStage;
