@@ -193,22 +193,22 @@ public class Controller {
                 if (clickCount >= 1) {
                     graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
                     if (yr2 <= yr1) {
-                        py1 = py1 - 1;
+                        py1 = py1 - 100;
                         toSend = "ShootUp";
                         actuallySend = true;
                     }
                     if (yr2 >= yr1) {
-                        py1 = py1 + 1;
+                        py1 = py1 + 100;
                         toSend = "ShootDown";
                         actuallySend = true;
                     }
                     if (xr2 <= xr1) {
-                        px1 = px1 - 1;
+                        px1 = px1 - 100;
                         toSend = "ShootLeft";
                         actuallySend = true;
                     }
                     if (xr2 >= xr1) {
-                        px1 = px1 + 1;
+                        px1 = px1 + 100;
                         toSend = "ShootRight";
                         actuallySend = true;
                     }
@@ -317,22 +317,22 @@ public class Controller {
                 if (clickCount >= 1) {
                     graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
                     if (yr1 <= yr2) {
-                        py2 = py2 - 1;
+                        py2 = py2 - 100;
                         toSend = "ShootUp";
                         actuallySend = true;
                     }
                     if (yr1 >= yr2) {
-                        py2 = py2 + 1;
+                        py2 = py2 + 100;
                         toSend = "ShootDown";
                         actuallySend = true;
                     }
                     if (xr1 <= xr2) {
-                        px2 = px2 - 1;
+                        px2 = px2 - 100;
                         toSend = "ShootLeft";
                         actuallySend = true;
                     }
                     if (xr1 >= xr2) {
-                        px2 = px2 + 1;
+                        px2 = px2 + 100;
                         toSend = "ShootRight";
                         actuallySend = true;
                     }
@@ -473,37 +473,37 @@ public class Controller {
 
     void shootUP() {
         if (serverMode) {
-            py2 = py2 - 1000000000;
+            py2 = py2 - 100;
         }
         if (!serverMode) {
-            py1 = py1 - 1000000000;
+            py1 = py1 - 100;
         }
     }
 
     void shootDOWN() {
         if (serverMode) {
-            py2 = py2 + 1000000000;
+            py2 = py2 + 100;
         }
         if (!serverMode) {
-            py1 = py1 + 1000000000;
+            py1 = py1 + 100;
         }
     }
 
     void shootLEFT() {
         if (serverMode) {
-            px2 = px2 - 1000000000;
+            px2 = px2 - 100;
         }
         if (!serverMode) {
-            px1 = px1 - 1000000000;
+            px1 = px1 - 100;
         }
     }
 
     void shootRIGHT() {
         if (serverMode) {
-            px2 = px2 + 1000000000;
+            px2 = px2 + 100;
         }
         if (!serverMode) {
-            px1 = px1 + 1000000000;
+            px1 = px1 + 100;
         }
     }
 
