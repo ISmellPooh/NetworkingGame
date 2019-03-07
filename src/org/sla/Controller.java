@@ -84,8 +84,8 @@ public class Controller {
         hr1 = 50;
         wr2 = 50;
         hr2 = 50;
-        pw = 10;
-        ph = 10;
+        pw = 25;
+        ph = 25;
         px1 = xr1 + 25;
         py1 = yr1 + 25;
         px2 = xr2 + 25;
