@@ -86,10 +86,10 @@ public class Controller {
         hr2 = 50;
         pw = 100;
         ph = 100;
-        px1 = 10;
-        py1 = 10;
-        px2 = 500;
-        py2 = 500;
+        px1 = 0;
+        py1 = 0;
+        px2 = 490;
+        py2 = 490;
         r1Health = 10;
         r2Health = 10;
         graphicsContext = canvas.getGraphicsContext2D();
@@ -473,37 +473,37 @@ public class Controller {
 
     void shootUP() {
         if (serverMode) {
-            py2 = py2 - 100;
+            py2 = py2 - 10000;
         }
         if (!serverMode) {
-            py1 = py1 - 100;
+            py1 = py1 - 10000;
         }
     }
 
     void shootDOWN() {
         if (serverMode) {
-            py2 = py2 + 100;
+            py2 = py2 + 10000;
         }
         if (!serverMode) {
-            py1 = py1 + 100;
+            py1 = py1 + 10000;
         }
     }
 
     void shootLEFT() {
         if (serverMode) {
-            px2 = px2 - 100;
+            px2 = px2 - 10000;
         }
         if (!serverMode) {
-            px1 = px1 - 100;
+            px1 = px1 - 10000;
         }
     }
 
     void shootRIGHT() {
         if (serverMode) {
-            px2 = px2 + 100;
+            px2 = px2 + 10000;
         }
         if (!serverMode) {
-            px1 = px1 + 100;
+            px1 = px1 + 10000;
         }
     }
 
