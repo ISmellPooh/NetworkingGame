@@ -64,16 +64,16 @@ public class Controller {
     static boolean connected;
 
     public void initialize() {
-        AnimatorThread animator = new AnimatorThread(backgroundImage, rover1, rover2, projectile1, projectile2, xbi, ybi, xr1, yr1,
-                xr2, yr2, wr1, hr1, wr2, hr2, pw, ph, px1, py1, px2, py2, graphicsContext, canvas);
-        Thread animatorThread = new Thread(animator);
-        animatorThread.start();
         inQueue = new Queue();
         outQueue = new Queue();
         connected = false;
         GUIUpdater updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
+        AnimatorThread animator = new AnimatorThread(backgroundImage, rover1, rover2, projectile1, projectile2, xbi, ybi, xr1, yr1,
+                xr2, yr2, wr1, hr1, wr2, hr2, pw, ph, px1, py1, px2, py2, graphicsContext, canvas);
+        Thread animatorThread = new Thread(animator);
+        animatorThread.start();
 
         arrowKeyAlreadySent = false;
         mouseAlreadySent = false;
