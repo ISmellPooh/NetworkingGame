@@ -70,8 +70,7 @@ public class Controller {
         GUIUpdater updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
-        AnimatorThread animator = new AnimatorThread(backgroundImage, rover1, rover2, projectile1, projectile2, xbi, ybi, xr1, yr1,
-                xr2, yr2, wr1, hr1, wr2, hr2, pw, ph, px1, py1, px2, py2, graphicsContext, canvas);
+        AnimatorThread animator = new AnimatorThread(this);
         Thread animatorThread = new Thread(animator);
         animatorThread.start();
 
@@ -424,6 +423,15 @@ public class Controller {
 
             // We connected!
         }
+    }
+
+    public void draw() {
+        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+        graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
+        graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
     }
 
     void moveUPAndDraw() {
