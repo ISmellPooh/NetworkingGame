@@ -473,37 +473,37 @@ public class Controller {
 
     void shootUP() {
         if (serverMode) {
-            py2 = py2 - 10000;
+            py2 = py2 - 1000000000;
         }
         if (!serverMode) {
-            py1 = py1 - 10000;
+            py1 = py1 - 1000000000;
         }
     }
 
     void shootDOWN() {
         if (serverMode) {
-            py2 = py2 + 10000;
+            py2 = py2 + 1000000000;
         }
         if (!serverMode) {
-            py1 = py1 + 10000;
+            py1 = py1 + 1000000000;
         }
     }
 
     void shootLEFT() {
         if (serverMode) {
-            px2 = px2 - 10000;
+            px2 = px2 - 1000000000;
         }
         if (!serverMode) {
-            px1 = px1 - 10000;
+            px1 = px1 - 1000000000;
         }
     }
 
     void shootRIGHT() {
         if (serverMode) {
-            px2 = px2 + 10000;
+            px2 = px2 + 1000000000;
         }
         if (!serverMode) {
-            px1 = px1 + 10000;
+            px1 = px1 + 1000000000;
         }
     }
 
