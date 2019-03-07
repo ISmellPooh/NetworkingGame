@@ -13,7 +13,7 @@ public class AnimatorThread implements Runnable {
             System.out.println("I DREW");
             myController.draw();
             try {
-                Thread.currentThread().wait(1000000000);
+                Thread.currentThread().wait(10000);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
