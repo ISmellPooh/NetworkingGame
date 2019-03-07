@@ -70,9 +70,6 @@ public class Controller {
         GUIUpdater updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
-        AnimatorThread animator = new AnimatorThread(this);
-        Thread animatorThread = new Thread(animator);
-        animatorThread.start();
 
         arrowKeyAlreadySent = false;
         mouseAlreadySent = false;
@@ -112,6 +109,10 @@ public class Controller {
         canvas.setFocusTraversable(true);
         //canvas2.setFocusTraversable(false);
         clickCount = 0;
+
+        AnimatorThread animator = new AnimatorThread(this);
+        Thread animatorThread = new Thread(animator);
+        animatorThread.start();
     }
 
     void setServerMode() {
