@@ -29,8 +29,8 @@ public class AnimatorThread implements Runnable {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
-    AnimatorThread(Image bi, Image r1, Image r2, Image p1, Image p2, int xbi, int ybi, int xr1, int yr1, int xr2, int yr2,
-                   int wr1, int hr1, int wr2, int hr2, int pw, int ph, int px1, int py1, int px2, int py2) {
+    AnimatorThread(Image bi, Image r1, Image r2, Image p1, Image p2, int xbi, int ybi, int xr1, int yr1, int xr2, int yr2, int wr1,
+                   int hr1, int wr2, int hr2, int pw, int ph, int px1, int py1, int px2, int py2, GraphicsContext gc, Canvas can) {
         backgroundImage = bi;
         rover1 = r1;
         rover2 = r2;
@@ -52,6 +52,8 @@ public class AnimatorThread implements Runnable {
         projectileY1 = py1;
         projectileX2 = px2;
         projectileY2 = py2;
+        graphicsContext = gc;
+        canvas = can;
     }
 
     @Override
