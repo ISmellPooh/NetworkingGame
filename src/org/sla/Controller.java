@@ -140,21 +140,25 @@ public class Controller {
 
                 if (event.getCode() == KeyCode.UP) {
                     yr1 = yr1 - 5;
+                    System.out.println("yr1 = " + yr1);
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     yr1 = yr1 + 5;
+                    System.out.println("yr1 = " + yr1);
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
                     xr1 = xr1 - 5;
+                    System.out.println("xr1 = " + xr1);
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr1 = xr1 + 5;
+                    System.out.println("xr1 = " + xr1);
                     toSend = "right";
                     actuallySend = true;
                 }
@@ -287,21 +291,25 @@ public class Controller {
                 String toSend = "huh?";
                 if (event.getCode() == KeyCode.UP) {
                     yr2 = yr2 - 5;
+                    System.out.println("yr2 = " + yr2);
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     yr2 = yr2 + 5;
+                    System.out.println("yr2 = " + yr2);
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
                     xr2 = xr2 - 5;
+                    System.out.println("xr2 = " + xr2);
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
                     xr2 = xr2 + 5;
+                    System.out.println("xr2 = " + xr2);
                     toSend = "right";
                     actuallySend = true;
                 }
