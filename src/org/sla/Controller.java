@@ -139,22 +139,22 @@ public class Controller {
                 boolean actuallySend = false;
 
                 if (event.getCode() == KeyCode.UP) {
-                    yr1 = yr1 - 1;
+                    yr1 = yr1 - 10;
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    yr1 = yr1 + 1;
+                    yr1 = yr1 + 10;
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
-                    xr1 = xr1 - 1;
+                    xr1 = xr1 - 10;
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
-                    xr1 = xr1 + 1;
+                    xr1 = xr1 + 10;
                     toSend = "right";
                     actuallySend = true;
                 }
@@ -262,22 +262,22 @@ public class Controller {
                 boolean actuallySend = false;
                 String toSend = "huh?";
                 if (event.getCode() == KeyCode.UP) {
-                    yr2 = yr2 - 1;
+                    yr2 = yr2 - 10;
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    yr2 = yr2 + 1;
+                    yr2 = yr2 + 10;
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
-                    xr2 = xr2 - 1;
+                    xr2 = xr2 - 10;
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
-                    xr2 = xr2 + 1;
+                    xr2 = xr2 + 10;
                     toSend = "right";
                     actuallySend = true;
                 }
@@ -437,37 +437,37 @@ public class Controller {
 
     void moveUPAndDraw() {
         if (serverMode) {
-            yr2 = yr2 - 1;
+            yr2 = yr2 - 10;
         }
         if (!serverMode) {
-            yr1 = yr1 - 1;
+            yr1 = yr1 - 10;
         }
     }
 
     void moveDOWNAndDraw() {
         if (serverMode) {
-            yr2 = yr2 + 1;
+            yr2 = yr2 + 10;
         }
         if (!serverMode) {
-            yr1 = yr1 + 1;
+            yr1 = yr1 + 10;
         }
     }
 
     void moveLEFTAndDraw() {
         if (serverMode) {
-            xr2 = xr2 - 1;
+            xr2 = xr2 - 10;
         }
         if (!serverMode) {
-            xr1 = xr1 - 1;
+            xr1 = xr1 - 10;
         }
     }
 
     void moveRIGHTAndDraw() {
         if (serverMode) {
-            xr2 = xr2 + 1;
+            xr2 = xr2 + 10;
         }
         if (!serverMode){
-            xr1 = xr1 + 1;
+            xr1 = xr1 + 10;
         }
     }
 
