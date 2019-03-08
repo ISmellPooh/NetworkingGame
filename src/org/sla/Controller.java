@@ -139,22 +139,22 @@ public class Controller {
                 boolean actuallySend = false;
 
                 if (event.getCode() == KeyCode.UP) {
-                    yr1 = yr1 - 10;
+                    yr1 = yr1 - 5;
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    yr1 = yr1 + 10;
+                    yr1 = yr1 + 5;
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
-                    xr1 = xr1 - 10;
+                    xr1 = xr1 - 5;
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
-                    xr1 = xr1 + 10;
+                    xr1 = xr1 + 5;
                     toSend = "right";
                     actuallySend = true;
                 }
@@ -212,6 +212,30 @@ public class Controller {
                         toSend = "ShootRight";
                         actuallySend = true;
                     }
+                    if (px1 > 600) {
+                        px1 = 0;
+                    }
+                    if (px1 < 0) {
+                        px1 = 0;
+                    }
+                    if (py1 > 690) {
+                        py1 = 0;
+                    }
+                    if (py1 < 0) {
+                        py1 = 0;
+                    }
+                    if (px2 > 600) {
+                        px2 = 490;
+                    }
+                    if (px2 < 0) {
+                        px2 = 490;
+                    }
+                    if (py2 > 690) {
+                        py2 = 490;
+                    }
+                    if (py2 < 0) {
+                        py2 = 490;
+                    }
                 }
 
                 if (clickCount == 5) {
@@ -262,22 +286,22 @@ public class Controller {
                 boolean actuallySend = false;
                 String toSend = "huh?";
                 if (event.getCode() == KeyCode.UP) {
-                    yr2 = yr2 - 10;
+                    yr2 = yr2 - 5;
                     toSend = "up";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    yr2 = yr2 + 10;
+                    yr2 = yr2 + 5;
                     toSend = "down";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.LEFT) {
-                    xr2 = xr2 - 10;
+                    xr2 = xr2 - 5;
                     toSend = "left";
                     actuallySend = true;
                 }
                 if (event.getCode() == KeyCode.RIGHT) {
-                    xr2 = xr2 + 10;
+                    xr2 = xr2 + 5;
                     toSend = "right";
                     actuallySend = true;
                 }
@@ -335,6 +359,30 @@ public class Controller {
                         px2 = px2 + 100;
                         toSend = "ShootRight";
                         actuallySend = true;
+                    }
+                    if (px1 > 600) {
+                        px1 = 0;
+                    }
+                    if (px1 < 0) {
+                        px1 = 0;
+                    }
+                    if (py1 > 690) {
+                        py1 = 0;
+                    }
+                    if (py1 < 0) {
+                        py1 = 0;
+                    }
+                    if (px2 > 600) {
+                        px2 = 490;
+                    }
+                    if (px2 < 0) {
+                        px2 = 490;
+                    }
+                    if (py2 > 690) {
+                        py2 = 490;
+                    }
+                    if (py2 < 0) {
+                        py2 = 490;
                     }
                 }
 
@@ -437,72 +485,72 @@ public class Controller {
 
     void moveUPAndDraw() {
         if (serverMode) {
-            yr2 = yr2 - 10;
+            yr2 = yr2 - 5;
         }
         if (!serverMode) {
-            yr1 = yr1 - 10;
+            yr1 = yr1 - 5;
         }
     }
 
     void moveDOWNAndDraw() {
         if (serverMode) {
-            yr2 = yr2 + 10;
+            yr2 = yr2 + 5;
         }
         if (!serverMode) {
-            yr1 = yr1 + 10;
+            yr1 = yr1 + 5;
         }
     }
 
     void moveLEFTAndDraw() {
         if (serverMode) {
-            xr2 = xr2 - 10;
+            xr2 = xr2 - 5;
         }
         if (!serverMode) {
-            xr1 = xr1 - 10;
+            xr1 = xr1 - 5;
         }
     }
 
     void moveRIGHTAndDraw() {
         if (serverMode) {
-            xr2 = xr2 + 10;
+            xr2 = xr2 + 5;
         }
         if (!serverMode){
-            xr1 = xr1 + 10;
+            xr1 = xr1 + 5;
         }
     }
 
     void shootUP() {
-        if (serverMode) {
+        if (serverMode && py2 > 0) {
             py2 = py2 - 100;
         }
-        if (!serverMode) {
+        if (!serverMode && py1 > 0) {
             py1 = py1 - 100;
         }
     }
 
     void shootDOWN() {
-        if (serverMode) {
+        if (serverMode && py2 < 690) {
             py2 = py2 + 100;
         }
-        if (!serverMode) {
+        if (!serverMode && py1 < 690) {
             py1 = py1 + 100;
         }
     }
 
     void shootLEFT() {
-        if (serverMode) {
+        if (serverMode && px2 > 0) {
             px2 = px2 - 100;
         }
-        if (!serverMode) {
+        if (!serverMode && px1 > 0) {
             px1 = px1 - 100;
         }
     }
 
     void shootRIGHT() {
-        if (serverMode) {
+        if (serverMode && px2 < 600) {
             px2 = px2 + 100;
         }
-        if (!serverMode) {
+        if (!serverMode && px1 < 600) {
             px1 = px1 + 100;
         }
     }
