@@ -539,15 +539,15 @@ public class Controller {
     }
 
     public void draw() {
-        if (drawProjectile2) {
-            graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
-            px2 = px2 + px2Delta;
-            py2 = py2 + py2Delta;
-        }
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
             px1 = px1 + px1Delta;
             py1 = py1 + py1Delta;
+        }
+        if (drawProjectile2) {
+            graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
+            px2 = px2 + px2Delta;
+            py2 = py2 + py2Delta;
         }
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
