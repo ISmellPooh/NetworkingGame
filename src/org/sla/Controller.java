@@ -196,77 +196,105 @@ public class Controller {
                 }
 
                 mouseAlreadySent = true;
-                String toSend = "why?";
+                String toSendVert = "why?";
+                String toSendHoriz = "why?";
                 boolean actuallySend = false;
 
                 if (clickCount >= 1) {
-                    graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
-                    if (yr2 <= yr1) {
-                        py1 = py1 - 100;
-                        toSend = "ShootUp";
-                        actuallySend = true;
-                    }
-                    if (yr2 >= yr1) {
-                        py1 = py1 + 100;
-                        toSend = "ShootDown";
-                        actuallySend = true;
-                    }
-                    if (xr2 <= xr1) {
-                        px1 = px1 - 100;
-                        toSend = "ShootLeft";
-                        actuallySend = true;
-                    }
-                    if (xr2 >= xr1) {
-                        px1 = px1 + 100;
-                        toSend = "ShootRight";
-                        actuallySend = true;
-                    }
-                    if (px1 > 600) {
-                        px1 = 0;
-                    }
-                    if (px1 < 0) {
-                        px1 = 0;
-                    }
-                    if (py1 > 690) {
-                        py1 = 0;
-                    }
-                    if (py1 < 0) {
-                        py1 = 0;
-                    }
-                    if (px2 > 600) {
-                        px2 = 490;
-                    }
-                    if (px2 < 0) {
-                        px2 = 490;
-                    }
-                    if (py2 > 690) {
-                        py2 = 490;
-                    }
-                    if (py2 < 0) {
-                        py2 = 490;
-                    }
-                }
+                    if (!drawProjectile2) {
+                        drawProjectile2 = true;
 
-                if (clickCount == 5) {
-                    wr2 = 0;
-                    hr2 = 0;
-                    graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-                    // change size to 0
-                    System.out.println("Destruction Active");
-                    toSend = "p1Click";
-                    actuallySend = true;
-                    clickCount = 0;
-                }
+                        if (yr2 <= yr1) {
+                            py1 = yr1;
+                            px1 = xr1;
+                            py1Delta = -5;
+                            toSendVert = "ShootUp";
+                            actuallySend = true;
+                        }
+                        if (yr2 >= yr1) {
+                            py1 = yr1;
+                            px1 = xr1;
+                            py1Delta = 5;
+                            toSendVert = "ShootDown";
+                            actuallySend = true;
+                        }
+                        if (xr2 <= xr1) {
+                            py1 = yr1;
+                            px1 = xr1;
+                            px1Delta = -5;
+                            toSendHoriz = "ShootLeft";
+                            actuallySend = true;
+                        }
+                        if (xr2 >= xr1) {
+                            py1 = yr1;
+                            px1 = xr1;
+                            py1Delta = 5;
+                            toSendHoriz = "ShootRight";
+                            actuallySend = true;
+                        }
+                        if (px1 > 600) {
+                            px1 = 0;
+                        }
+                        if (px1 < 0) {
+                            px1 = 0;
+                        }
+                        if (py1 > 690) {
+                            py1 = 0;
+                        }
+                        if (py1 < 0) {
+                            py1 = 0;
+                        }
+                        if (px2 > 600) {
+                            px2 = 490;
+                        }
+                        if (px2 < 0) {
+                            px2 = 490;
+                        }
+                        if (py2 > 690) {
+                            py2 = 490;
+                        }
+                        if (py2 < 0) {
+                            py2 = 490;
+                        }
+                    }
 
-                if (actuallySend) {
-                    if (wr2 == 0 && hr2 == 0) {
-                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
-                        if (!outQueue.put(msgToSend)) {
-                            Thread.currentThread().yield();
+                    if (actuallySend) {
+                        if (wr1 == 0 && hr1 == 0) {
+                            Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
+                            if (!outQueue.put(msgToSend)) {
+                                Thread.currentThread().yield();
+                            }
+                            msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz);
+                            if (!outQueue.put(msgToSend)) {
+                                Thread.currentThread().yield();
+                            }
+                        }
+                    }
+
+
+                    String toSend = "why?";
+                    if (clickCount == 5) {
+                        wr1 = 0;
+                        hr1 = 0;
+                        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+                        // change size to 0
+                        System.out.println("Destruction Active");
+                        toSend = "p2Click";
+                        actuallySend = true;
+                        clickCount = 0;
+                    }
+
+                    if (actuallySend) {
+                        if (wr1 == 0 && hr1 == 0) {
+                            Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
+                            if (!outQueue.put(msgToSend)) {
+                                Thread.currentThread().yield();
+                            }
                         }
                     }
                 }
             }
+
         });
 
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
