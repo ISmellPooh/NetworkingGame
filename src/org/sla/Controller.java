@@ -82,6 +82,9 @@ public class Controller {
         arrowKeyAlreadySent = false;
         mouseAlreadySent = false;
 
+        drawProjectile1 = false;
+        drawProjectile2 = false;
+
         xbi = 0;
         ybi = 0;
         xr1 = 10;
