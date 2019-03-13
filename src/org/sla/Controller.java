@@ -262,18 +262,16 @@ public class Controller {
                     }
 
                     if (actuallySend) {
-                        if (wr2 == 0 && hr2 == 0) {
-                            Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
-                            if (!outQueue.put(msgToSend)) {
-                                Thread.currentThread().yield();
-                            }
-                            msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz);
-                            if (!outQueue.put(msgToSend)) {
-                                Thread.currentThread().yield();
-                            }
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
+                        while (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
+                        }
+                        msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz);
+                        while (!outQueue.put(msgToSend)) {
+                            Thread.currentThread().yield();
                         }
                     }
-
+                    actuallySend = false;
                     String toSend = "what";
                     if (clickCount == 5) {
                         wr2 = 0;
@@ -439,7 +437,6 @@ public class Controller {
                     }
 
                     if (actuallySend) {
-                        if (wr1 == 0 && hr1 == 0) {
                             Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
@@ -448,9 +445,9 @@ public class Controller {
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
                             }
-                        }
-                    }
 
+                    }
+                    actuallySend = false;
                     String toSend = "what";
                     if (clickCount == 5) {
                         wr1 = 0;
