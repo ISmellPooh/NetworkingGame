@@ -278,7 +278,7 @@ public class Controller {
                         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
                         // change size to 0
                         System.out.println("Destruction Active");
-                        toSend = "p2Click";
+                        toSend = "p1Click";
                         actuallySend = true;
                         clickCount = 0;
                     }
