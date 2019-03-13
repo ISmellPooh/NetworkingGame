@@ -10,7 +10,6 @@ public class AnimatorThread implements Runnable {
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            System.out.println("I DREW");
             myController.draw();
             try {
                 Thread.sleep(1000);
