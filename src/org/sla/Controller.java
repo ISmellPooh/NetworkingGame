@@ -201,8 +201,8 @@ public class Controller {
                 boolean actuallySend = false;
 
                 if (clickCount >= 1) {
-                    if (!drawProjectile2) {
-                        drawProjectile2 = true;
+                    if (!drawProjectile1) {
+                        drawProjectile1 = true;
 
                         if (yr2 <= yr1) {
                             py1 = yr1;
@@ -259,7 +259,7 @@ public class Controller {
                     }
 
                     if (actuallySend) {
-                        if (wr1 == 0 && hr1 == 0) {
+                        if (wr2 == 0 && hr2 == 0) {
                             Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
@@ -271,12 +271,11 @@ public class Controller {
                         }
                     }
 
-
                     String toSend = "why?";
                     if (clickCount == 5) {
-                        wr1 = 0;
-                        hr1 = 0;
-                        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+                        wr2 = 0;
+                        hr2 = 0;
+                        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
                         // change size to 0
                         System.out.println("Destruction Active");
                         toSend = "p2Click";
@@ -285,7 +284,7 @@ public class Controller {
                     }
 
                     if (actuallySend) {
-                        if (wr1 == 0 && hr1 == 0) {
+                        if (wr2 == 0 && hr2 == 0) {
                             Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSend);
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
@@ -448,7 +447,6 @@ public class Controller {
                             }
                         }
                     }
-
 
                     String toSend = "why?";
                     if (clickCount == 5) {
