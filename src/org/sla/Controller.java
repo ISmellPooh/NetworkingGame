@@ -542,6 +542,10 @@ public class Controller {
     }
 
     public void draw() {
+        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
+        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
             px1 = px1 + px1Delta;
@@ -552,10 +556,6 @@ public class Controller {
             px2 = px2 + px2Delta;
             py2 = py2 + py2Delta;
         }
-        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
-        graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
     }
 
     void moveUPAndDraw() {
