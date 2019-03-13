@@ -143,7 +143,7 @@ public class Controller {
                 }
 
                 arrowKeyAlreadySent = true;
-                String toSend = "why?";
+                String toSend = "what";
                 boolean actuallySend = false;
 
                 if (event.getCode() == KeyCode.UP) {
@@ -196,8 +196,8 @@ public class Controller {
                 }
 
                 mouseAlreadySent = true;
-                String toSendVert = "why?";
-                String toSendHoriz = "why?";
+                String toSendVert = "what";
+                String toSendHoriz = "what";
                 boolean actuallySend = false;
 
                 if (clickCount >= 1) {
@@ -271,7 +271,7 @@ public class Controller {
                         }
                     }
 
-                    String toSend = "why?";
+                    String toSend = "what";
                     if (clickCount == 5) {
                         wr2 = 0;
                         hr2 = 0;
@@ -320,7 +320,7 @@ public class Controller {
 
                 arrowKeyAlreadySent = true;
                 boolean actuallySend = false;
-                String toSend = "huh?";
+                String toSend = "what";
 
                 if (event.getCode() == KeyCode.UP) {
                     yr2 = yr2 - 5;
@@ -373,8 +373,8 @@ public class Controller {
                 }
 
                 mouseAlreadySent = true;
-                String toSendVert = "why?";
-                String toSendHoriz = "why?";
+                String toSendVert = "what";
+                String toSendHoriz = "what";
                 boolean actuallySend = false;
 
                 if (clickCount >= 1) {
@@ -448,7 +448,7 @@ public class Controller {
                         }
                     }
 
-                    String toSend = "why?";
+                    String toSend = "what";
                     if (clickCount == 5) {
                         wr1 = 0;
                         hr1 = 0;
