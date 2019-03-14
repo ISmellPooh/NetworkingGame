@@ -592,6 +592,7 @@ public class Controller {
     }
 
     void shootUP() {
+
         if (serverMode && py2 > 0) {
             py2 = py2 - 100;
         }
@@ -601,11 +602,16 @@ public class Controller {
     }
 
     void shootDOWN() {
-        if (serverMode && py2 < 690) {
-            py2 = py2 + 100;
-        }
-        if (!serverMode && py1 < 690) {
-            py1 = py1 + 100;
+        if (serverMode) {
+            drawProjectile2 = true;
+            px2 = xr2;
+            py2 = yr2;
+            py2Delta = 5;
+        } else {
+            drawProjectile1 = true;
+            px1 = xr1;
+            py1 = yr1;
+            py1Delta = 5;
         }
     }
 
@@ -637,23 +643,6 @@ public class Controller {
             wr1 = 0;
             hr1 = 0;
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
-        }
-    }
-
-    void drawProjectile(int whichPlayer) {
-        if (whichPlayer == 1) {
-            px1 = 0;
-            py1 = 0;
-            px1Delta = 0;
-            py1Delta = 0;
-            drawProjectile1 = true;
-        }
-        if (whichPlayer == 2) {
-            px2 = 490;
-            py2 = 490;
-            px2Delta = 0;
-            py2Delta = 0;
-            drawProjectile2 = true;
         }
     }
 

@@ -63,14 +63,6 @@ public class GUIUpdater implements Runnable {
                 myController.playerClicked(2);
                 System.out.println("player2Click");
             }
-            if (message.data().equals("drawP1")) {
-                myController.drawProjectile(1);
-                System.out.println("projectile1drew");
-            }
-            if (message.data().equals("drawP2")) {
-                myController.drawProjectile(2);
-                System.out.println("projectile2drew");
-            }
         }
     }
 }
