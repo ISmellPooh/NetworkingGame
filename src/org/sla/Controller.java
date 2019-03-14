@@ -592,12 +592,16 @@ public class Controller {
     }
 
     void shootUP() {
-
-        if (serverMode && py2 > 0) {
-            py2 = py2 - 100;
-        }
-        if (!serverMode && py1 > 0) {
-            py1 = py1 - 100;
+        if (serverMode) {
+            drawProjectile2 = true;
+            px2 = xr2;
+            py2 = yr2;
+            py2Delta = -5;
+        } else {
+            drawProjectile1 = true;
+            px1 = xr1;
+            py1 = yr1;
+            py1Delta = -5;
         }
     }
 
@@ -616,20 +620,30 @@ public class Controller {
     }
 
     void shootLEFT() {
-        if (serverMode && px2 > 0) {
-            px2 = px2 - 100;
-        }
-        if (!serverMode && px1 > 0) {
-            px1 = px1 - 100;
+        if (serverMode) {
+            drawProjectile2 = true;
+            px2 = xr2;
+            py2 = yr2;
+            px2Delta = -5;
+        } else {
+            drawProjectile1 = true;
+            px1 = xr1;
+            py1 = yr1;
+            px1Delta = -5;
         }
     }
 
     void shootRIGHT() {
-        if (serverMode && px2 < 600) {
-            px2 = px2 + 100;
-        }
-        if (!serverMode && px1 < 600) {
-            px1 = px1 + 100;
+        if (serverMode) {
+            drawProjectile2 = true;
+            px2 = xr2;
+            py2 = yr2;
+            px2Delta = 5;
+        } else {
+            drawProjectile1 = true;
+            px1 = xr1;
+            py1 = yr1;
+            px1Delta = 5;
         }
     }
 
