@@ -640,6 +640,23 @@ public class Controller {
         }
     }
 
+    void drawProjectile(int whichPlayer) {
+        if (whichPlayer == 1) {
+            px1 = 0;
+            py1 = 0;
+            px1Delta = 0;
+            py1Delta = 0;
+            drawProjectile1 = true;
+        }
+        if (whichPlayer == 2) {
+            px2 = 490;
+            py2 = 490;
+            px2Delta = 0;
+            py2Delta = 0;
+            drawProjectile2 = true;
+        }
+    }
+
     public void setStage(Stage theStage) {
         stage = theStage;
     }
