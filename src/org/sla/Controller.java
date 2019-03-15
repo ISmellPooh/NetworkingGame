@@ -210,28 +210,28 @@ public class Controller {
                         if (yr2 < yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (yr1-yr2)/10;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr2 > yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (yr1-yr2)/10;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr2 < xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (xr1-xr2)/10;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr2 > xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (xr1-xr2)/10;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
@@ -678,7 +678,7 @@ public class Controller {
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
     }
-//
+
     public void setStage(Stage theStage) {
         stage = theStage;
     }
