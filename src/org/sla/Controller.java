@@ -678,7 +678,7 @@ public class Controller {
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
     }
-
+//
     public void setStage(Stage theStage) {
         stage = theStage;
     }
