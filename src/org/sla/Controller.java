@@ -210,28 +210,28 @@ public class Controller {
                         if (yr2 < yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr1-yr2)/10;
+                            py1Delta = (yr2-yr1)/10;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr2 > yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr1-yr2)/10;
+                            py1Delta = (yr2-yr1)/10;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr2 < xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr1-xr2)/10;
+                            px1Delta = (xr2-xr1)/10;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr2 > xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr1-xr2)/10;
+                            px1Delta = (xr2-xr1)/10;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
@@ -361,28 +361,28 @@ public class Controller {
                         if (yr1 < yr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            py2Delta = (yr2-yr1)/10;
+                            py2Delta = (yr1-yr2)/10;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr1 > yr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            py2Delta = (yr2-yr1)/10;
+                            py2Delta = (yr1-yr2)/10;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr1 < xr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            px2Delta = (yr2-yr1)/10;
+                            px2Delta = (yr1-yr2)/10;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr1 > xr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            px2Delta = (yr2-yr1)/10;
+                            px2Delta = (yr1-yr2)/10;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
