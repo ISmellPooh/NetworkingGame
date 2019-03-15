@@ -615,7 +615,7 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            py2Delta = (yr2-yr1)/10;
+            py2Delta = (yr1-yr2)/10;
         } else {
             drawProjectile1 = true;
             px1 = xr1;
@@ -629,7 +629,7 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            py2Delta = (yr2-yr1)/10;
+            py2Delta = (yr1-yr2)/10;
         } else {
             drawProjectile1 = true;
             px1 = xr1;
@@ -643,7 +643,7 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (yr2-yr1)/10;
+            px2Delta = (yr1-yr2)/10;
         } else {
             drawProjectile1 = true;
             px1 = xr1;
@@ -657,7 +657,7 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (yr2-yr1)/10;
+            px2Delta = (yr1-yr2)/10;
         } else {
             drawProjectile1 = true;
             px1 = xr1;
