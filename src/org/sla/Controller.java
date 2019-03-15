@@ -616,7 +616,8 @@ public class Controller {
             px2 = xr2;
             py2 = yr2;
             py2Delta = (yr1-yr2)/10;
-        } else {
+        }
+        if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
@@ -630,7 +631,8 @@ public class Controller {
             px2 = xr2;
             py2 = yr2;
             py2Delta = (yr1-yr2)/10;
-        } else {
+        }
+        if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
@@ -644,7 +646,8 @@ public class Controller {
             px2 = xr2;
             py2 = yr2;
             px2Delta = (yr1-yr2)/10;
-        } else {
+        }
+        if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
@@ -658,7 +661,8 @@ public class Controller {
             px2 = xr2;
             py2 = yr2;
             px2Delta = (yr1-yr2)/10;
-        } else {
+        }
+        if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
