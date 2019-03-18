@@ -27,6 +27,7 @@ public class Controller {
     private Image rover2;
     private Image projectile1;
     private Image projectile2;
+    private Image explosion;
     int xbi;
     int ybi;
     int xr1;
@@ -64,7 +65,11 @@ public class Controller {
     static boolean connected;
 
     private boolean drawProjectile1;
+    private boolean drawCollision1;
+    private int drawCollision1Count;
     private boolean drawProjectile2;
+    private boolean drawCollision2;
+    private int drawCollision2Count;
 
     private int px1Delta;
     private int py1Delta;
@@ -114,7 +119,8 @@ public class Controller {
         projectile1 = new Image(imagePath4);
         String imagePath5 = "org/sla/projectile2.png";
         projectile2 = new Image(imagePath5);
-
+        String imagePath6 = "org/sla/explosion.png";
+        explosion = new Image(imagePath6);
         //graphicsContext2 = canvas2.getGraphicsContext2D();
 
         canvas.setFocusTraversable(true);
@@ -495,8 +501,27 @@ public class Controller {
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+        if (drawCollision1) {
+            graphicsContext.drawImage(explosion, xr2, yr2, wr2, hr2);
+            drawCollision1Count = drawCollision1Count - 1;
+            if (drawCollision1Count == 0) {
+                drawCollision1 = false;
+                // move rover2 to new location
+                xr1 = (int)(Math.random()*(canvas.getWidth()));
+                yr1 = (int)(Math.random()*(canvas.getHeight()));
+            }
+
+        }
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
+            // check if projectile1 HIT
+            if (projectileCollision(px1,py1,px1+px1Delta,py1+py1Delta,xr2,yr2)) {
+                System.out.println("COLLIDE projectile 1");
+                drawProjectile1 = false;
+                drawCollision1 = true;
+                drawCollision1Count = 10;
+                // Increment player1's score
+            }
             px1 = px1 + px1Delta;
             py1 = py1 + py1Delta;
 
@@ -536,6 +561,11 @@ public class Controller {
         }
         if (drawProjectile2) {
             graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
+            if (projectileCollision(px2,py2,px2+px2Delta,py2+py2Delta,xr1,yr1)) {
+                System.out.println("COLLIDE projectile 2");
+
+            }
+
             px2 = px2 + px2Delta;
             py2 = py2 + py2Delta;
 
@@ -668,6 +698,32 @@ public class Controller {
             py1 = yr1;
             px1Delta = (xr2-xr1)/10;
         }
+    }
+
+    boolean projectileCollision(int oldpx, int oldpy, int newpx, int newpy, int xr, int yr) {
+        double smallDeltaX = newpx - oldpx;
+        double smallDeltaY = newpy - oldpy;
+        if (smallDeltaX > smallDeltaY) {
+            smallDeltaY = smallDeltaY / smallDeltaX;
+            smallDeltaX = 1.0;
+        } else {
+            smallDeltaX = smallDeltaX / smallDeltaY;
+            smallDeltaY = 1.0;
+        }
+
+        for (double x = oldpx; x < newpx; x = x + smallDeltaX) {
+            for (double y = oldpy; y < newpy; y = y + smallDeltaY) {
+
+                boolean betweenXs = ((xr <= x) && (x <= xr + wr1));
+                boolean betweenYs = ((yr <= y) && (y <= yr + hr1));
+                if (betweenXs && betweenYs) {
+                    // got collision
+                    return true;
+                }
+
+            }
+        }
+        return false;
     }
 
     void playerClicked(int whichPlayer) {
