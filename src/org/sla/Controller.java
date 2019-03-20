@@ -551,8 +551,8 @@ public class Controller {
                 drawCollision1Count = 10;
                 // Increment player1's score
             }
-            px1 = px1 + px1Delta;
-            py1 = py1 + py1Delta;
+            px1 = px1 - px1Delta;
+            py1 = py1 - py1Delta;
 
             if (px1 > 600) {
                 px1 = 0;
