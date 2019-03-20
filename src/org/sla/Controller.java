@@ -578,9 +578,10 @@ public class Controller {
             graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
             if (projectileCollision(px2,py2,px2+px2Delta,py2+py2Delta,xr1,yr1)) {
                 System.out.println("COLLIDE projectile 2");
-
+                drawProjectile2 = false;
+                drawCollision2 = true;
+                drawCollision2Count = 10;
             }
-
             px2 = px2 + px2Delta;
             py2 = py2 + py2Delta;
 
