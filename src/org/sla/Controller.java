@@ -255,15 +255,22 @@ public class Controller {
                     }
                     actuallySend = false;
                     String toSend = "what";
-                    if (clickCount == 5) {
+                    if (px2 < xr1 && xr1 < px2 + px2Delta) {
                         wr2 = 0;
                         hr2 = 0;
                         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
-                        // change size to 0
                         System.out.println("Destruction Active");
                         toSend = "p1Click";
                         actuallySend = true;
-                        clickCount = 0;
+                    }
+
+                    if (px2 < xr1 + wr1 && xr1 + wr1 < px2 + px2Delta) {
+                        wr2 = 0;
+                        hr2 = 0;
+                        graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
+                        System.out.println("Destruction Active");
+                        toSend = "p1Click";
+                        actuallySend = true;
                     }
 
                     if (actuallySend) {
@@ -507,10 +514,19 @@ public class Controller {
             if (drawCollision1Count == 0) {
                 drawCollision1 = false;
                 // move rover2 to new location
+                xr2 = (int)(Math.random()*(canvas.getWidth()));
+                yr2 = (int)(Math.random()*(canvas.getHeight()));
+            }
+        }
+        if (drawCollision2) {
+            graphicsContext.drawImage(explosion, xr1, yr1, wr1, hr1);
+            drawCollision2Count = drawCollision2Count - 1;
+            if (drawCollision2Count == 0) {
+                drawCollision2 = false;
+                // move rover2 to new location
                 xr1 = (int)(Math.random()*(canvas.getWidth()));
                 yr1 = (int)(Math.random()*(canvas.getHeight()));
             }
-
         }
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
@@ -557,7 +573,6 @@ public class Controller {
                 py2 = 490;
                 drawProjectile1 = false;
             }
-
         }
         if (drawProjectile2) {
             graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
