@@ -63,6 +63,14 @@ public class GUIUpdater implements Runnable {
                 myController.playerClicked(2);
                 System.out.println("player2Click");
             }
+            if (message.data().equals("NewLocation")) {
+                if (message.sender().equals("Player 1")) {
+                    myController.newLocation(1, message.x(), message.y());
+                } else {
+                    myController.newLocation(2, message.x(), message.y());
+                }
+                System.out.println("player2Click");
+            }
         }
     }
 }

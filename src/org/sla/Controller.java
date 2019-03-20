@@ -503,7 +503,7 @@ public class Controller {
         }
     }
 
-    public void draw() {
+    void draw() {
         graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(backgroundImage, xbi, ybi, canvas.getWidth(), canvas.getHeight());
         graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
@@ -514,8 +514,14 @@ public class Controller {
             if (drawCollision1Count == 0) {
                 drawCollision1 = false;
                 // move rover2 to new location
-                xr2 = (int)(Math.random()*(canvas.getWidth()));
-                yr2 = (int)(Math.random()*(canvas.getHeight()));
+                if (!serverMode) {
+                    xr2 = (int) (Math.random() * (canvas.getWidth()));
+                    yr2 = (int) (Math.random() * (canvas.getHeight()));
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", "NewLocation", xr2, yr2);
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
+                    }
+                }
             }
         }
         if (drawCollision2) {
@@ -523,9 +529,16 @@ public class Controller {
             drawCollision2Count = drawCollision2Count - 1;
             if (drawCollision2Count == 0) {
                 drawCollision2 = false;
-                // move rover2 to new location
-                xr1 = (int)(Math.random()*(canvas.getWidth()));
-                yr1 = (int)(Math.random()*(canvas.getHeight()));
+                // move rover1 to new location
+                if (serverMode) {
+                    xr1 = (int) (Math.random() * (canvas.getWidth()));
+                    yr1 = (int) (Math.random() * (canvas.getHeight()));
+                    Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", "NewLocation", xr1, yr1);
+                    if (!outQueue.put(msgToSend)) {
+                        Thread.currentThread().yield();
+                    }
+
+                }
             }
         }
         if (drawProjectile1) {
@@ -671,6 +684,16 @@ public class Controller {
         }
     }
 
+    void newLocation(int whichPlayer, int x, int y) {
+        if (whichPlayer == 1) {
+            xr1 = x;
+            yr1 = y;
+        } else {
+            xr2 = x;
+            yr2 = y;
+        }
+    }
+
     void shootDOWN() {
         if (serverMode) {
             drawProjectile2 = true;
@@ -716,7 +739,7 @@ public class Controller {
         }
     }
 
-    boolean projectileCollision(int oldpx, int oldpy, int newpx, int newpy, int xr, int yr) {
+    private boolean projectileCollision(int oldpx, int oldpy, int newpx, int newpy, int xr, int yr) {
         double smallDeltaX = newpx - oldpx;
         double smallDeltaY = newpy - oldpy;
         if (smallDeltaX > smallDeltaY) {
