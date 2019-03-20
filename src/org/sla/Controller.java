@@ -104,7 +104,7 @@ public class Controller {
         ph = 100;
         px1 = 0;
         py1 = 0;
-        px2 = 500;
+        px2 = 490;
         py2 = 500;
         r1Health = 10;
         r2Health = 10;
