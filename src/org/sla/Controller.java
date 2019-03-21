@@ -669,21 +669,6 @@ public class Controller {
         }
     }
 
-    void shootUP() {
-        if (serverMode) {
-            drawProjectile2 = true;
-            px2 = xr2;
-            py2 = yr2;
-            py2Delta = (yr1-yr2)/10;
-        }
-        if (!serverMode) {
-            drawProjectile1 = true;
-            px1 = xr1;
-            py1 = yr1;
-            py1Delta = (yr2-yr1)/10;
-        }
-    }
-
     void newLocation(int whichPlayer, int x, int y) {
         if (whichPlayer == 1) {
             xr1 = x;
@@ -694,18 +679,33 @@ public class Controller {
         }
     }
 
-    void shootDOWN() {
+    void shootUP() {
         if (serverMode) {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            py2Delta = (yr1-yr2)/10;
+            py2Delta = (yr1-yr2)/100;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            py1Delta = (yr2-yr1)/10;
+            py1Delta = (yr2-yr1)/100;
+        }
+    }
+
+    void shootDOWN() {
+        if (serverMode) {
+            drawProjectile2 = true;
+            px2 = xr2;
+            py2 = yr2;
+            py2Delta = (yr1-yr2)/100;
+        }
+        if (!serverMode) {
+            drawProjectile1 = true;
+            px1 = xr1;
+            py1 = yr1;
+            py1Delta = (yr2-yr1)/100;
         }
     }
 
@@ -714,13 +714,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (xr1-xr2)/10;
+            px2Delta = (xr1-xr2)/100;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            px1Delta = (xr2-xr1)/10;
+            px1Delta = (xr2-xr1)/100;
         }
     }
 
@@ -729,13 +729,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (xr1-xr2)/10;
+            px2Delta = (xr1-xr2)/100;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            px1Delta = (xr2-xr1)/10;
+            px1Delta = (xr2-xr1)/100;
         }
     }
 
