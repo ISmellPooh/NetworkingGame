@@ -96,10 +96,10 @@ public class Controller {
         yr1 = 10;
         xr2 = 500;
         yr2 = 500;
-        wr1 = 20;
-        hr1 = 20;
-        wr2 = 20;
-        hr2 = 20;
+        wr1 = 40;
+        hr1 = 40;
+        wr2 = 40;
+        hr2 = 40;
         pw = 10;
         ph = 10;
         px1 = 0;
