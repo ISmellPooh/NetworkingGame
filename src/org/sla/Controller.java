@@ -264,14 +264,14 @@ public class Controller {
                         actuallySend = true;
                     }
 
-                    if (px2 < xr1 + wr1 && xr1 + wr1 < px2 + px2Delta) {
+                    /*if (px2 < xr1 + wr1 && xr1 + wr1 < px2 + px2Delta) {
                         wr2 = 0;
                         hr2 = 0;
                         graphicsContext.drawImage(rover2, xr2, yr2, wr2, hr2);
                         System.out.println("Destruction Active");
                         toSend = "p1Click";
                         actuallySend = true;
-                    }
+                    }*/
 
                     if (actuallySend) {
                         if (wr2 == 0 && hr2 == 0) {
@@ -414,7 +414,7 @@ public class Controller {
                     }
                     actuallySend = false;
                     String toSend = "what";
-                    if (clickCount == 5) {
+                    /*if (clickCount == 5) {
                         wr1 = 0;
                         hr1 = 0;
                         graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
@@ -423,7 +423,7 @@ public class Controller {
                         toSend = "p2Click";
                         actuallySend = true;
                         clickCount = 0;
-                    }
+                    }*/
 
                     if (actuallySend) {
                         if (wr1 == 0 && hr1 == 0) {
@@ -787,7 +787,7 @@ public class Controller {
         return false;
     }
 
-    void playerClicked(int whichPlayer) {
+    /*void playerClicked(int whichPlayer) {
         if (whichPlayer == 1) {
             wr2 = 0;
             hr2 = 0;
@@ -798,7 +798,7 @@ public class Controller {
             hr1 = 0;
             graphicsContext.drawImage(rover1, xr1, yr1, wr1, hr1);
         }
-    }
+    }*/
 
     public void setStage(Stage theStage) {
         stage = theStage;
