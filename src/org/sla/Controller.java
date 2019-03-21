@@ -216,28 +216,28 @@ public class Controller {
                         if (yr2 < yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (yr2-yr1)/50;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr2 > yr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (yr2-yr1)/50;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr2 < xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (xr2-xr1)/50;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr2 > xr1) {
                             py1 = yr1;
                             px1 = xr1;
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (xr2-xr1)/50;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
@@ -374,28 +374,28 @@ public class Controller {
                         if (yr1 < yr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            py2Delta = (yr1-yr2)/10;
+                            py2Delta = (yr1-yr2)/50;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr1 > yr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            py2Delta = (yr1-yr2)/10;
+                            py2Delta = (yr1-yr2)/50;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr1 < xr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            px2Delta = (xr1-xr2)/10;
+                            px2Delta = (xr1-xr2)/50;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr1 > xr2) {
                             py2 = yr2;
                             px2 = xr2;
-                            px2Delta = (xr1-xr2)/10;
+                            px2Delta = (xr1-xr2)/50;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
@@ -684,13 +684,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            py2Delta = (yr1-yr2)/100;
+            py2Delta = (yr1-yr2)/50;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            py1Delta = (yr2-yr1)/100;
+            py1Delta = (yr2-yr1)/50;
         }
     }
 
@@ -699,13 +699,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            py2Delta = (yr1-yr2)/100;
+            py2Delta = (yr1-yr2)/50;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            py1Delta = (yr2-yr1)/100;
+            py1Delta = (yr2-yr1)/50;
         }
     }
 
@@ -714,13 +714,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (xr1-xr2)/100;
+            px2Delta = (xr1-xr2)/50;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            px1Delta = (xr2-xr1)/100;
+            px1Delta = (xr2-xr1)/50;
         }
     }
 
@@ -729,13 +729,13 @@ public class Controller {
             drawProjectile2 = true;
             px2 = xr2;
             py2 = yr2;
-            px2Delta = (xr1-xr2)/100;
+            px2Delta = (xr1-xr2)/50;
         }
         if (!serverMode) {
             drawProjectile1 = true;
             px1 = xr1;
             py1 = yr1;
-            px1Delta = (xr2-xr1)/100;
+            px1Delta = (xr2-xr1)/50;
         }
     }
 
