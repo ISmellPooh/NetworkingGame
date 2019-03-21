@@ -544,15 +544,15 @@ public class Controller {
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
             // check if projectile1 HIT
-            if (projectileCollision(px1,py1,px1-px1Delta,py1-py1Delta,xr2,yr2)) {
+            if (projectileCollision(px1,py1,px1+px1Delta,py1+py1Delta,xr2,yr2)) {
                 System.out.println("COLLIDE projectile 1");
                 drawProjectile1 = false;
                 drawCollision1 = true;
                 drawCollision1Count = 10;
                 // Increment player1's score
             }
-            px1 = px1 - px1Delta;
-            py1 = py1 - py1Delta;
+            px1 = px1 + px1Delta;
+            py1 = py1 + py1Delta;
 
             if (px1 > 600) {
                 px1 = 0;
