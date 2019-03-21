@@ -214,29 +214,29 @@ public class Controller {
                         drawProjectile1 = true;
 
                         if (yr2 < yr1) {
-                            py1 = yr1;
-                            px1 = xr1;
+                            py1 = yr1+(hr1/2);
+                            px1 = xr1+(wr1/2);
                             py1Delta = (yr2-yr1)/50;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr2 > yr1) {
-                            py1 = yr1;
-                            px1 = xr1;
+                            py1 = yr1+(hr1/2);
+                            px1 = xr1+(wr1/2);
                             py1Delta = (yr2-yr1)/50;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr2 < xr1) {
-                            py1 = yr1;
-                            px1 = xr1;
+                            py1 = yr1+(hr1/2);
+                            px1 = xr1+(wr1/2);
                             px1Delta = (xr2-xr1)/50;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr2 > xr1) {
-                            py1 = yr1;
-                            px1 = xr1;
+                            py1 = yr1+(hr1/2);
+                            px1 = xr1+(wr1/2);
                             px1Delta = (xr2-xr1)/50;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
@@ -372,29 +372,29 @@ public class Controller {
                         drawProjectile2 = true;
 
                         if (yr1 < yr2) {
-                            py2 = yr2;
-                            px2 = xr2;
+                            py2 = yr2+(hr2/2);
+                            px2 = xr2+(wr2/2);
                             py2Delta = (yr1-yr2)/50;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
                         if (yr1 > yr2) {
-                            py2 = yr2;
-                            px2 = xr2;
+                            py2 = yr2+(hr2/2);
+                            px2 = xr2+(wr2/2);
                             py2Delta = (yr1-yr2)/50;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
                         if (xr1 < xr2) {
-                            py2 = yr2;
-                            px2 = xr2;
+                            py2 = yr2+(hr2/2);
+                            px2 = xr2+(wr2/2);
                             px2Delta = (xr1-xr2)/50;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
                         if (xr1 > xr2) {
-                            py2 = yr2;
-                            px2 = xr2;
+                            py2 = yr2+(hr2/2);
+                            px2 = xr2+(wr2/2);
                             px2Delta = (xr1-xr2)/50;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
@@ -544,7 +544,7 @@ public class Controller {
         if (drawProjectile1) {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
             // check if projectile1 HIT
-            if (projectileCollision(px1,py1,px1+px1Delta,py1+py1Delta,xr2,yr2)) {
+            if (projectileCollision(px1-px1Delta,py1-py1Delta,px1,py1,xr2,yr2)) {
                 System.out.println("COLLIDE projectile 1");
                 drawProjectile1 = false;
                 drawCollision1 = true;
@@ -589,7 +589,7 @@ public class Controller {
         }
         if (drawProjectile2) {
             graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
-            if (projectileCollision(px2,py2,px2+px2Delta,py2+py2Delta,xr1,yr1)) {
+            if (projectileCollision(px2-px2Delta,py2-py2Delta,px2,py2,xr1,yr1)) {
                 System.out.println("COLLIDE projectile 2");
                 drawProjectile2 = false;
                 drawCollision2 = true;
@@ -740,8 +740,9 @@ public class Controller {
     }
 
     private boolean projectileCollision(int oldpx, int oldpy, int newpx, int newpy, int xr, int yr) {
-        double smallDeltaX = newpx - oldpx;
-        double smallDeltaY = newpy - oldpy;
+        double smallDeltaX = Math.abs(newpx - oldpx);
+        double smallDeltaY = Math.abs(newpy - oldpy);
+        System.out.println("projectileCollision smallDeltaX = " +smallDeltaX + " smallDeltaY=" + smallDeltaY);
         if (smallDeltaX > smallDeltaY) {
             smallDeltaY = smallDeltaY / smallDeltaX;
             smallDeltaX = 1.0;
@@ -750,15 +751,36 @@ public class Controller {
             smallDeltaY = 1.0;
         }
 
-        for (double x = oldpx; x < newpx; x = x + smallDeltaX) {
-            for (double y = oldpy; y < newpy; y = y + smallDeltaY) {
+        System.out.println("projectileCollision (xr,yr) to (xr + wr1, yr + hr1): (" + xr + "," +yr+") to (" + ((int)xr + (int)wr1) + "," + ((int)yr + (int)hr1) +")");
+        System.out.println("projectileCollision oldpx = " +oldpx + " newpx=" + newpx + " smallDeltaX="+smallDeltaX);
+        System.out.println("projectileCollision oldpy = " +oldpy + " newpy=" + newpy + " smallDeltaY="+smallDeltaY);
+        double leftX, rightX, topY, bottomY;
+        if (oldpx < newpx) {
+            leftX = oldpx;
+            rightX = newpx;
+        } else {
+            leftX = newpx;
+            rightX = oldpx;
+        }
+        if (oldpy < newpy) {
+            topY = oldpy;
+            bottomY = newpy;
+        } else {
+            topY = newpy;
+            bottomY = oldpy;
+        }
+        for (double x = leftX; x < rightX; x = x + smallDeltaX) {
+            for (double y = topY; y < bottomY; y = y + smallDeltaY) {
 
                 boolean betweenXs = ((xr <= x) && (x <= xr + wr1));
                 boolean betweenYs = ((yr <= y) && (y <= yr + hr1));
                 if (betweenXs && betweenYs) {
                     // got collision
+                    System.out.println("projectileCollision TRUE at (x,y): (" + x + "," +y +")");
                     return true;
                 }
+                System.out.println("projectileCollision FALSE at (x,y): (" + x + "," +y +")");
+
 
             }
         }
