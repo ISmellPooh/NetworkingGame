@@ -652,13 +652,13 @@ public class Controller {
     }
 
     void shootUP(int player, int clickX, int clickY) {
-        if (player == 1) {
+        if (player == 2) {
             drawProjectile2 = true;
             px2 = xr2+(wr2/2);
             py2 = yr2+(hr2/2);
             py2Delta = (clickY-yr2)/10;
         }
-        if (player == 2) {
+        if (player == 1) {
             drawProjectile1 = true;
             px1 = xr1+(wr1/2);
             py1 = yr1+(hr1/2);
@@ -667,13 +667,13 @@ public class Controller {
     }
 
     void shootDOWN(int player, int clickX, int clickY) {
-        if (player == 1) {
+        if (player == 2) {
             drawProjectile2 = true;
             px2 = xr2+(wr2/2);
             py2 = yr2+(hr2/2);
             py2Delta = (clickY-yr2)/10;
         }
-        if (player == 2) {
+        if (player == 1) {
             drawProjectile1 = true;
             px1 = xr1+(wr1/2);
             py1 = yr1+(hr1/2);
@@ -682,13 +682,13 @@ public class Controller {
     }
 
     void shootLEFT(int player, int clickX, int clickY) {
-        if (player == 1) {
+        if (player == 2) {
             drawProjectile2 = true;
             px2 = xr2+(wr2/2);
             py2 = yr2+(hr2/2);
             px2Delta = (clickX-xr2)/10;
         }
-        if (player == 2) {
+        if (player == 1) {
             drawProjectile1 = true;
             px1 = xr1+(wr1/2);
             py1 = yr1+(hr1/2);
@@ -697,13 +697,13 @@ public class Controller {
     }
 
     void shootRIGHT(int player, int clickX, int clickY) {
-        if (player == 1) {
+        if (player == 2) {
             drawProjectile2 = true;
             px2 = xr2+(wr2/2);
             py2 = yr2+(hr2/2);
             px2Delta = (clickX-xr2)/10;
         }
-        if (player == 2) {
+        if (player == 1) {
             drawProjectile1 = true;
             px1 = xr1+(wr1/2);
             py1 = yr1+(hr1/2);
