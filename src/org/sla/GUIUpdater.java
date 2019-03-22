@@ -40,19 +40,35 @@ public class GUIUpdater implements Runnable {
                 System.out.println("right");
             }
             if (message.data().equals("ShootUp")) {
-                myController.shootUP();
+                if (message.sender().equals("Player 1")) {
+                    myController.shootUP(1, message.x(), message.y());
+                } else {
+                    myController.shootUP(2, message.x(), message.y());
+                }
                 System.out.println("ShootUp");
             }
             if (message.data().equals("ShootDown")) {
-                myController.shootDOWN();
+                if (message.sender().equals("Player 1")) {
+                    myController.shootDOWN(1, message.x(), message.y());
+                } else {
+                    myController.shootDOWN(2, message.x(), message.y());
+                }
                 System.out.println("ShootDown");
             }
             if (message.data().equals("ShootLeft")) {
-                myController.shootLEFT();
+                if (message.sender().equals("Player 1")) {
+                    myController.shootLEFT(1, message.x(), message.y());
+                } else {
+                    myController.shootLEFT(2, message.x(), message.y());
+                }
                 System.out.println("ShootLeft");
             }
             if (message.data().equals("ShootRight")) {
-                myController.shootRIGHT();
+                if (message.sender().equals("Player 1")) {
+                    myController.shootRIGHT(1, message.x(), message.y());
+                } else {
+                    myController.shootRIGHT(2, message.x(), message.y());
+                }
                 System.out.println("ShootRight");
             }
             /*if (message.data().equals("player1Click")) {

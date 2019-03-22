@@ -198,6 +198,9 @@ public class Controller {
                     return;
                 }
 
+                int clickX = (int)event.getX();
+                int clickY = (int)event.getY();
+
                 if (event.getX() <= xr2 + 50 && event.getX() >= xr2) {
                     if (event.getY() <= yr2 + 50 && event.getY() >= yr2) {
                         clickCount = clickCount + 1;
@@ -213,42 +216,42 @@ public class Controller {
                     if (!drawProjectile1) {
                         drawProjectile1 = true;
 
-                        if (yr2 < yr1) {
+                        if (clickY < yr1) {
                             py1 = yr1+(hr1/2);
                             px1 = xr1+(wr1/2);
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (clickY-yr1)/10;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
-                        if (yr2 > yr1) {
+                        if (clickY > yr1) {
                             py1 = yr1+(hr1/2);
                             px1 = xr1+(wr1/2);
-                            py1Delta = (yr2-yr1)/10;
+                            py1Delta = (clickY-yr1)/10;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
-                        if (xr2 < xr1) {
+                        if (clickX < xr1) {
                             py1 = yr1+(hr1/2);
                             px1 = xr1+(wr1/2);
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (clickX-xr1)/10;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
-                        if (xr2 > xr1) {
+                        if (clickX > xr1) {
                             py1 = yr1+(hr1/2);
                             px1 = xr1+(wr1/2);
-                            px1Delta = (xr2-xr1)/10;
+                            px1Delta = (clickX-xr1)/10;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
                     }
 
                     if (actuallySend) {
-                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
+                        Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert, clickX, clickY);
                         while (!outQueue.put(msgToSend)) {
                             Thread.currentThread().yield();
                         }
-                        msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz);
+                        msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz, clickX, clickY);
                         while (!outQueue.put(msgToSend)) {
                             Thread.currentThread().yield();
                         }
@@ -356,6 +359,9 @@ public class Controller {
                     return;
                 }
 
+                int clickX = (int)event.getX();
+                int clickY = (int)event.getY();
+
                 if (event.getX() <= xr1 + 50 && event.getX() >= xr1) {
                     if (event.getY() <= yr1 + 50 && event.getY() >= yr1) {
                         clickCount = clickCount + 1;
@@ -371,42 +377,42 @@ public class Controller {
                     if (!drawProjectile2) {
                         drawProjectile2 = true;
 
-                        if (yr1 < yr2) {
+                        if (clickY < yr2) {
                             py2 = yr2+(hr2/2);
                             px2 = xr2+(wr2/2);
-                            py2Delta = (yr1-yr2)/10;
+                            py2Delta = (clickY-yr2)/10;
                             toSendVert = "ShootUp";
                             actuallySend = true;
                         }
-                        if (yr1 > yr2) {
+                        if (clickY > yr2) {
                             py2 = yr2+(hr2/2);
                             px2 = xr2+(wr2/2);
-                            py2Delta = (yr1-yr2)/10;
+                            py2Delta = (clickY-yr2)/10;
                             toSendVert = "ShootDown";
                             actuallySend = true;
                         }
-                        if (xr1 < xr2) {
+                        if (clickX < xr2) {
                             py2 = yr2+(hr2/2);
                             px2 = xr2+(wr2/2);
-                            px2Delta = (xr1-xr2)/10;
+                            px2Delta = (clickX-xr2)/10;
                             toSendHoriz = "ShootLeft";
                             actuallySend = true;
                         }
-                        if (xr1 > xr2) {
+                        if (clickX > xr2) {
                             py2 = yr2+(hr2/2);
                             px2 = xr2+(wr2/2);
-                            px2Delta = (xr1-xr2)/10;
+                            px2Delta = (clickX-xr2)/10;
                             toSendHoriz = "ShootRight";
                             actuallySend = true;
                         }
                     }
 
                     if (actuallySend) {
-                            Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert);
+                            Message msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendVert, clickX, clickY);
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
                             }
-                            msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz);
+                            msgToSend = new Message(serverMode ? "Player 1" : "Player 2", toSendHoriz, clickX, clickY);
                             if (!outQueue.put(msgToSend)) {
                                 Thread.currentThread().yield();
                             }
@@ -545,7 +551,6 @@ public class Controller {
             graphicsContext.drawImage(projectile1, px1, py1, pw, ph);
             // check if projectile1 HIT
             if (projectileCollision(px1-px1Delta,py1-py1Delta,px1,py1,xr2,yr2)) {
-                System.out.println("COLLIDE projectile 1");
                 drawProjectile1 = false;
                 drawCollision1 = true;
                 drawCollision1Count = 10;
@@ -570,27 +575,10 @@ public class Controller {
                 py1 = 0;
                 drawProjectile1 = false;
             }
-            if (px2 > 600) {
-                px2 = 490;
-                drawProjectile1 = false;
-            }
-            if (px2 < 0) {
-                px2 = 490;
-                drawProjectile1 = false;
-            }
-            if (py2 > 690) {
-                py2 = 490;
-                drawProjectile1 = false;
-            }
-            if (py2 < 0) {
-                py2 = 490;
-                drawProjectile1 = false;
-            }
         }
         if (drawProjectile2) {
             graphicsContext.drawImage(projectile2, px2, py2, pw, ph);
             if (projectileCollision(px2-px2Delta,py2-py2Delta,px2,py2,xr1,yr1)) {
-                System.out.println("COLLIDE projectile 2");
                 drawProjectile2 = false;
                 drawCollision2 = true;
                 drawCollision2Count = 10;
@@ -598,22 +586,6 @@ public class Controller {
             px2 = px2 + px2Delta;
             py2 = py2 + py2Delta;
 
-            if (px1 > 600) {
-                px1 = 0;
-                drawProjectile2 = false;
-            }
-            if (px1 < 0) {
-                px1 = 0;
-                drawProjectile2 = false;
-            }
-            if (py1 > 690) {
-                py1 = 0;
-                drawProjectile2 = false;
-            }
-            if (py1 < 0) {
-                py1 = 0;
-                drawProjectile2 = false;
-            }
             if (px2 > 600) {
                 px2 = 490;
                 drawProjectile2 = false;
@@ -679,70 +651,69 @@ public class Controller {
         }
     }
 
-    void shootUP() {
-        if (serverMode) {
+    void shootUP(int player, int clickX, int clickY) {
+        if (player == 1) {
             drawProjectile2 = true;
-            px2 = xr2;
-            py2 = yr2;
-            py2Delta = (yr1-yr2)/10;
+            px2 = xr2+(wr2/2);
+            py2 = yr2+(hr2/2);
+            py2Delta = (clickY-yr2)/10;
         }
-        if (!serverMode) {
+        if (player == 2) {
             drawProjectile1 = true;
-            px1 = xr1;
-            py1 = yr1;
-            py1Delta = (yr2-yr1)/10;
+            px1 = xr1+(wr1/2);
+            py1 = yr1+(hr1/2);
+            py1Delta = (clickY-yr1)/10;
         }
     }
 
-    void shootDOWN() {
-        if (serverMode) {
+    void shootDOWN(int player, int clickX, int clickY) {
+        if (player == 1) {
             drawProjectile2 = true;
-            px2 = xr2;
-            py2 = yr2;
-            py2Delta = (yr1-yr2)/10;
+            px2 = xr2+(wr2/2);
+            py2 = yr2+(hr2/2);
+            py2Delta = (clickY-yr2)/10;
         }
-        if (!serverMode) {
+        if (player == 2) {
             drawProjectile1 = true;
-            px1 = xr1;
-            py1 = yr1;
-            py1Delta = (yr2-yr1)/10;
+            px1 = xr1+(wr1/2);
+            py1 = yr1+(hr1/2);
+            py1Delta = (clickY-yr1)/10;
         }
     }
 
-    void shootLEFT() {
-        if (serverMode) {
+    void shootLEFT(int player, int clickX, int clickY) {
+        if (player == 1) {
             drawProjectile2 = true;
-            px2 = xr2;
-            py2 = yr2;
-            px2Delta = (xr1-xr2)/10;
+            px2 = xr2+(wr2/2);
+            py2 = yr2+(hr2/2);
+            px2Delta = (clickX-xr2)/10;
         }
-        if (!serverMode) {
+        if (player == 2) {
             drawProjectile1 = true;
-            px1 = xr1;
-            py1 = yr1;
-            px1Delta = (xr2-xr1)/10;
+            px1 = xr1+(wr1/2);
+            py1 = yr1+(hr1/2);
+            px1Delta = (clickX-xr1)/10;
         }
     }
 
-    void shootRIGHT() {
-        if (serverMode) {
+    void shootRIGHT(int player, int clickX, int clickY) {
+        if (player == 1) {
             drawProjectile2 = true;
-            px2 = xr2;
-            py2 = yr2;
-            px2Delta = (xr1-xr2)/10;
+            px2 = xr2+(wr2/2);
+            py2 = yr2+(hr2/2);
+            px2Delta = (clickX-xr2)/10;
         }
-        if (!serverMode) {
+        if (player == 2) {
             drawProjectile1 = true;
-            px1 = xr1;
-            py1 = yr1;
-            px1Delta = (xr2-xr1)/10;
+            px1 = xr1+(wr1/2);
+            py1 = yr1+(hr1/2);
+            px1Delta = (clickX-xr1)/10;
         }
     }
 
     private boolean projectileCollision(int oldpx, int oldpy, int newpx, int newpy, int xr, int yr) {
         double smallDeltaX = Math.abs(newpx - oldpx);
         double smallDeltaY = Math.abs(newpy - oldpy);
-        System.out.println("projectileCollision smallDeltaX = " +smallDeltaX + " smallDeltaY=" + smallDeltaY);
         if (smallDeltaX > smallDeltaY) {
             smallDeltaY = smallDeltaY / smallDeltaX;
             smallDeltaX = 1.0;
@@ -751,9 +722,6 @@ public class Controller {
             smallDeltaY = 1.0;
         }
 
-        System.out.println("projectileCollision (xr,yr) to (xr + wr1, yr + hr1): (" + xr + "," +yr+") to (" + ((int)xr + (int)wr1) + "," + ((int)yr + (int)hr1) +")");
-        System.out.println("projectileCollision oldpx = " +oldpx + " newpx=" + newpx + " smallDeltaX="+smallDeltaX);
-        System.out.println("projectileCollision oldpy = " +oldpy + " newpy=" + newpy + " smallDeltaY="+smallDeltaY);
         double leftX, rightX, topY, bottomY;
         if (oldpx < newpx) {
             leftX = oldpx;
@@ -776,10 +744,8 @@ public class Controller {
                 boolean betweenYs = ((yr <= y) && (y <= yr + hr1));
                 if (betweenXs && betweenYs) {
                     // got collision
-                    System.out.println("projectileCollision TRUE at (x,y): (" + x + "," +y +")");
                     return true;
                 }
-                System.out.println("projectileCollision FALSE at (x,y): (" + x + "," +y +")");
 
 
             }
